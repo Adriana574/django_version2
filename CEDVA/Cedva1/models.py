@@ -113,6 +113,7 @@ class Alumno(models.Model):
 	idusuario= models.ForeignKey(Usuario,related_name="subcategories4",blank=True , null= True, on_delete=models.CASCADE )
 	matricula=models.CharField(max_length=100,blank=True)
 	nombreA=models.CharField(max_length=100)
+	snombreA=models.CharField(max_length=100)
 	apellidoPA=models.CharField(max_length=100)
 	apellidoMA=models.CharField(max_length=100)
 	edad=models.IntegerField()

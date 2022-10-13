@@ -13,7 +13,9 @@ from django.views.generic import DetailView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic.base import TemplateView
 from django.urls import reverse
-from AlumnosAdmin.forms import FormularioAlumno, FormularioDireccion
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from AlumnosAdmin.forms import *
 
     
 @staff_member_required  
@@ -58,7 +60,7 @@ class Eliminar(DeleteView):
     
 
 def registrarAlumno(request):
-    form = FormularioAlumno(request.POST or None)
+    form = FormularioTutor(request.POST or None)
     if form.is_valid():
         form_data = form.cleaned_data
         nt = form_data.get("nombreT")
@@ -82,9 +84,43 @@ def registrarAlumno(request):
 
         obj2 = Direccion.objects.create(calle=cal, lote=lot, manzana=manz, colonia=col, delegacionMunicipio=dm, codigopostal=cp1, ciudadOestado=cie)
 
+    EspeForm = FormularioEspecialidad(request.POST or None)
+    if EspeForm.is_valid():
+        form_data = EspeForm.cleaned_data
+        nomE = form_data.get("nombreE")
+
+        obj3 = Especialidad.objects.create(nombreE=nomE)
+
+    UserForm = FormularioUsuario(request.POST or None)
+    if UserForm.is_valid():
+        form_data = UserForm.cleaned_data
+        nomU = form_data.get("username")
+        pas = form_data.get("password") 
+
+        obj4 = User.objects.create_user(username=nomU, password=pas)
+
+    AlumForm = FormularioAlumno(request.POST or None)
+    if AlumForm.is_valid():
+        form_data = AlumForm.cleaned_data
+        mat = form_data.get("matricula")
+        nomA = form_data.get("nombreA")
+        snomA = form_data.get("snombreA")
+        appA = form_data.get("apellidoPA")
+        apmA = form_data.get("apellidoMA")
+        eda = form_data.get("edad")
+        con = form_data.get("convenio")
+        iniC = form_data.get("inicioCurso")
+        finC = form_data.get("finalCurso")
+        obser = form_data.get("observaciones")
+
+        obj5 = Alumno.objects.create(matricula=mat, nombreA=nomA, snombreA=snomA, apellidoPA=appA, apellidoMA=apmA, edad=eda, convenio=con, inicioCurso=iniC, finalCurso=finC, observaciones=obser)
+
     context = {
         'form': form,
-        'Dirform': Dirform
+        'Dirform': Dirform,
+        'EspeForm': EspeForm,
+        'UserForm': UserForm,
+        'AlumForm': AlumForm
     }
         
     return render(request, "registroAlumno.html", context)

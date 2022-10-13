@@ -1,0 +1,205 @@
+{%extends 'headerAlumno.html'%}
+{%load static%}
+{%block content%}
+<style type="text/css">
+	#progress-bar{
+		width: 40px;
+		height: 70px; 
+
+	}
+	#progress{
+		width: 40px;
+		height: 70px; 
+
+	}
+
+	#five:checked ~ .progress > .progress-bar {
+		width: 4.2%;
+		background-color: #f34213;
+	}
+
+	#twentyfive:checked ~ .progress > .progress-bar {
+		width: 8.4%;
+		background-color: #f34213;
+	}
+
+	#fifty:checked ~ .progress > .progress-bar {
+		width: 12.6%;
+		background-color: #f34213;
+	}
+
+	#seventyfive:checked ~ .progress > .progress-bar {
+		width: 16.8%;
+		background-color: #f34213;
+	}
+
+	#onehundred:checked ~ .progress > .progress-bar {
+		width: 21%;
+		background-color: #f34213;
+	}
+	#veinticinto:checked ~ .progress > .progress-bar {
+		width: 25.2%;
+		background-color: #f34213;
+	}
+	#veintinueve:checked ~ .progress > .progress-bar {
+		width: 29.4%;
+		background-color: #f34213;
+	}
+	#treintaytres:checked ~ .progress > .progress-bar {
+		width: 33.6%;
+		background-color: #f34213;
+	}
+
+	#treintaysiete:checked ~ .progress > .progress-bar {
+		width: 37.8%;
+		background-color: #f34213;
+	}
+	#cuaretaydos:checked ~ .progress > .progress-bar {
+		width: 42%;
+		background-color: #f34213;
+	}
+	#cuaretayseis:checked ~ .progress > .progress-bar {
+		width: 46.2%;
+		background-color: #f34213;
+	}
+
+	#cincuneta:checked ~ .progress > .progress-bar {
+		width: 50.4%;
+		background-color: #f34213;
+	}
+	#cincunetaycuatro:checked ~ .progress > .progress-bar {
+		width: 54.6%;
+		background-color: #f34213;
+	}
+	#cincunetayocho:checked ~ .progress > .progress-bar {
+		width: 58.8%;
+		background-color: #f34213;
+	}
+
+	#sesentaytres:checked ~ .progress > .progress-bar {
+		width: 63%;
+		background-color: #f34213;
+	}
+
+	#sesentaysiete:checked ~ .progress > .progress-bar {
+		width: 67.2%;
+		background-color: #f34213;
+	}
+
+	#setentayuno:checked ~ .progress > .progress-bar {
+		width: 71.4%;
+		background-color: #f34213;
+	}
+	#setentaycinco:checked ~ .progress > .progress-bar {
+		width: 75.6%;
+		background-color: #f34213;
+	}
+	#setentaynueve:checked ~ .progress > .progress-bar {
+		width: 79.8%;
+		background-color: #f34213;
+	}
+	#setentaynueve:checked ~ .progress > .progress-bar {
+		width: 79.8%;
+		background-color: #f34213;
+	}
+	#ochentaycuatro:checked ~ .progress > .progress-bar {
+		width: 84%;
+		background-color: #f34213;
+	}
+	#ochentayocho:checked ~ .progress > .progress-bar {
+		width: 88.2%;
+		background-color: #f34213;
+	}
+	#noventaydos:checked ~ .progress > .progress-bar {
+		width: 92.4%;
+		background-color: #f34213;
+	}
+	#noventayseis:checked ~ .progress > .progress-bar {
+		width: 96.6%;
+		background-color: #f34213;
+	}
+	#cien:checked ~ .progress > .progress-bar {
+		width: 100%;
+		background-color: #f34213;
+	}
+</style>
+<div class="container" align="center">
+<input type="radio" class="radio" name="progress" value="five" id="five">
+<label for="five" class="label">4.2%</label>
+
+<input type="radio" class="radio" name="progress" value="twentyfive" id="twentyfive">
+<label for="twentyfive" class="label">8.4%</label>
+
+<input type="radio" class="radio" name="progress" value="fifty" id="fifty">
+<label for="fifty" class="label">12.6%</label>
+
+<input type="radio" class="radio" name="progress" value="seventyfive" id="seventyfive">
+<label for="seventyfive" class="label">16.8%</label>
+
+<input type="radio" class="radio" name="progress" value="onehundred" id="onehundred">
+<label for="onehundred" class="label">21%</label>
+
+<input type="radio" class="radio" name="progress" value="veinticinto" id="veinticinto">
+<label for="veinticinto" class="label">25.2%</label>
+
+<input type="radio" class="radio" name="progress" value="veintinueve" id="veintinueve">
+<label for="veintinueve" class="label">29.4%</label>
+
+<input type="radio" class="radio" name="progress" value="treintaytres" id="treintaytres">
+<label for="treintaytres" class="label">33.6%</label>
+
+<input type="radio" class="radio" name="progress" value="treintaysiete" id="treintaysiete">
+<label for="treintaysiete" class="label">37.8%</label>
+
+<input type="radio" class="radio" name="progress" value="cuaretaydos" id="cuaretaydos">
+<label for="cuaretaydos" class="label">42%</label>
+
+<input type="radio" class="radio" name="progress" value="cuaretayseis" id="cuaretayseis">
+<label for="cuaretayseis" class="label">46.2%</label>
+
+<input type="radio" class="radio" name="progress" value="cincuneta" id="cincuneta">
+<label for="cincuneta" class="label">50.4%</label>
+
+<input type="radio" class="radio" name="progress" value="cincunetaycuatro" id="cincunetaycuatro">
+<label for="cincunetaycuatro" class="label">54.6%</label>
+
+<input type="radio" class="radio" name="progress" value="cincunetayocho" id="cincunetayocho">
+<label for="cincunetayocho" class="label">58.8%</label>
+
+<input type="radio" class="radio" name="progress" value="sesentaytres" id="sesentaytres">
+<label for="sesentaytres" class="label">63%</label>
+
+<input type="radio" class="radio" name="progress" value="sesentaysiete" id="sesentaysiete">
+<label for="sesentaysiete" class="label">67.2%</label>
+
+<input type="radio" class="radio" name="progress" value="setentayuno" id="setentayuno">
+<label for="setentayuno" class="label">71.4%</label>
+
+<input type="radio" class="radio" name="progress" value="setentaycinco" id="setentaycinco">
+<label for="setentaycinco" class="label">75.6%</label>
+
+<input type="radio" class="radio" name="progress" value="setentaynueve" id="setentaynueve">
+<label for="setentaynueve" class="label">79.8%</label>
+
+<input type="radio" class="radio" name="progress" value="ochentaycuatro" id="ochentaycuatro">
+<label for="ochentaycuatro" class="label">84%</label>
+
+<input type="radio" class="radio" name="progress" value="ochentayocho" id="ochentayocho">
+<label for="ochentayocho" class="label">88.2%</label>
+
+<input type="radio" class="radio" name="progress" value="noventaydos" id="noventaydos">
+<label for="noventaydos" class="label">92.4%</label>
+
+<input type="radio" class="radio" name="progress" value="noventayseis" id="noventayseis">
+<label for="noventayseis" class="label">96.6%</label>
+
+<input type="radio" class="radio" name="progress" value="cien" id="cien">
+<label for="cien" class="label">100%</label>
+<br>
+<br>
+
+	<div class="progress">
+		<div class="progress-bar"></div>
+	</div>
+</div>
+{%endblock%}

@@ -1,0 +1,47 @@
+{% load static %} 
+{% include "header.html" %} 
+<body>
+  <br>
+  <br>
+  <div id="container">
+    <section class="vh-100">
+      <div class="col-md-10 col-lg-5 col-xl-5 offset-xl-4">
+        <div class="container py-5 h-100">
+          <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+              <img src="{%static 'img/cedva.jpg'%}" class="img-fluid" alt="Phone image" width="350px" style="border-radius: 5%">
+            </div>
+            <form action="/clicklogin" method="post">
+              {% csrf_token %}
+              <!-- Usuario -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form1Example13" style="font-size: 20px">Usuario</label>
+                <input type="text"  name="username"  class="form-control form-control-lg" required="" />
+              </div>
+              <!-- Password -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form1Example23" style="font-size: 20px">Password</label>
+                <input type="password"  name="password" class="form-control"  required="" />
+              </div>
+              <!-- Submit button -->
+              <div align="center">
+               <button type="submit" class="btn btn-dark">Login</button>
+                {% for message in messages %}
+                          {% if message.tags == 'error' %}
+                            {{ message }}
+                            {% endif %}
+                           {% endfor %}
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  {% include "footer.html" %}
+
+</body>
+</html>

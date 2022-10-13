@@ -1,0 +1,194 @@
+{%extends 'director/base.html'%}
+{% load static %}
+{%block content%}
+
+<br>
+<div class="container">
+  <div class="row">
+    <div>
+      <div>
+        <div class="card">
+          <div class="card-header">
+            Registrar Alumnos
+          </div>
+          <div class="card-body">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Datos Generales</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Domicilio</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Tutor</button>
+              </div>
+            </nav>
+            <form id="" action="Ver/" method="POST">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Matricula </label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.matricula}}">
+                      <label>Segundo Nombre </label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.nombreA}}">
+                      <label>Apellido Materno</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.apellidoMA}}">
+                      <label>Edad</label>
+                      <input type="number" name="" class="form-control" placeholder="{{Alumno.edad}}">
+                      <label>Final de Curso</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.finalCurso}}">
+                      <label>Observaciones</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.observaciones}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Nombre</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.nombreA}}" >
+                      <label>Apellido Paterno</label>
+                      <input type="text" name="" class="form-control"  placeholder="{{Alumno.apellidoPA}}">
+                      <label> Especialidad : {{Alumno.NombreE}}</label>
+                      <br>
+                      <label> Inicio de Curso </label>
+                      <input type="text" name="" class="form-control" placeholder="{{Alumno.inicioCurso}}">
+                      <label> Contraseña </label>
+                      <input type="password" name="" class="form-control" placeholder="{{Alumno.password}}">
+                      <label> Convenio </label>
+                      <input type="text" name="" class="form-control"  placeholder="{{Alumno.convenio}}">
+                    </div>
+                    <div align="center">
+                      <br>
+                      <button type="button" name="next" id="next" class="next action-button btn-primary" aria-controls="nav-profile-tab">Next </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Calle</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Direccion.calle}}">
+                      <label>Colonia</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Direccion.colonia}}">
+                      <label>Codigo Postal</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Direccion.codigopostal}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>No. Interior</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Direccion.lote}}">
+                      <label>Delegación o Municipio</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Direccion.delegacionMunicipio}}">
+                      <label>Ciudad o Estado</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Direccion.ciudadOestado}}">
+                    </div>
+                    <div align="center">
+                      <br>
+                      <button type="button" name="previous" id="previous" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Previous</button> 
+                      <button type="button" name="next1" id="next1" class="next action-button btn-primary" aria-controls="nav-contact-tab">Next</button> 
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Nombre</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Tutor.nombreT}}">
+                      <label>Apellido Materno</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Tutor.apellidoMT}}">
+                      <label>Télefono</label>
+                      <input type="number" name="" class="form-control" placeholder="{{Tutor.telefono}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Apellido Paterno</label>
+                      <input type="text" name="" class="form-control" placeholder="{{Tutor.apellidoPT}}" >
+                      <label>Padre o Tutor</label>
+                      <select class="form-select">
+                        <option>Padre</option>
+                        <option>Madre</option>
+                        <option>Tutor</option>
+                      </select>
+                    </div>
+                    <br>
+                    <br>
+                    <div align="center">
+                      <br>
+                      <button type="button" name="previous" id="previous1" class="previous action-button btn-secondary" aria-controls="nav-profile-tab">Previous</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.addEventListener("load", function() {
+    let tabs = document.querySelectorAll(".nav-tabs button");
+
+    let nextTab = document.getElementById("next");
+
+    let i = 0;
+
+    nextTab.addEventListener("click", function() {
+
+      i = (i == (tabs.length - 1)) ? 0 : i + 1;
+      tabs[1].click();
+
+    }, false);
+  }, false);
+
+  window.addEventListener("load", function() {
+    let tabs1 = document.querySelectorAll(".nav-tabs button");
+
+    let nextTab1 = document.getElementById("next1");
+
+    let i = 1;
+
+    nextTab1.addEventListener("click", function() {
+
+      i = (i == (tabs1.length - 1)) ? 0 : i + 1;
+      tabs1[2].click();
+
+    }, false);
+  }, false);
+</script>
+
+<script type="text/javascript">
+  window.addEventListener("load", function() {
+    let tabs2 = document.querySelectorAll(".nav-tabs button");
+
+    let previousTab = document.getElementById("previous");
+
+    let i = 0;
+
+    previousTab.addEventListener("click", function() {
+
+      i = (i == (tabs2.length - 1)) ? 0 : i + 1;
+      tabs2[0].click();
+
+    }, false);
+  }, false);
+
+  window.addEventListener("load", function() {
+    let tabs3 = document.querySelectorAll(".nav-tabs button");
+
+    let previousTab1 = document.getElementById("previous1");
+
+    let i = 1;
+
+    previousTab1.addEventListener("click", function() {
+
+      i = (i == (tabs3.length - 1)) ? 0 : i + 1;
+      tabs3[1].click();
+
+    }, false);
+  }, false);
+</script>
+
+<script type="text/javascript">
+  
+</script>
+
+{%endblock%}
+
+
+
+

@@ -1,0 +1,27 @@
+{%extends 'director/base.html'%}
+{% load static %}
+{%block content%}
+<br>
+<br>
+<div class="container" align="center">
+	<br>
+	<div class="card">
+		<div class="card-header" style="text-align: left;">
+			Pagos por Periodo
+		</div>
+		<div class="card-body">
+			<h5 class="card-title" align="center"> PERIODO DE PAGOS </h5>
+			<br>
+			<div class="form-group col-md-6">
+				<select class="form-select" aria-label="Default select example">
+					<option selected>Seleccionar periodo</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<br>
+</div>
+{%endblock%}

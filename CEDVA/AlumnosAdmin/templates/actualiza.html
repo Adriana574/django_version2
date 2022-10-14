@@ -1,55 +1,278 @@
 {%extends 'director/base.html'%}
 {% load static %}
 {%block content%}
-<div class="jumbotron" align="center">
-	<div class="container">
-		<div class="card" style="width: 30rem; background: #AED6F1">
-			<div class="card-body">
-				<h2>Modificar: {{ cancion.nombre }}</h2>
+
+<br>
+<div class="container">
+	<div class="row">
+		<div>
+			<div>
+				<div class="card">
+					<div class="card-header">
+						Registrar Alumnos
+					</div>
+					<div class="card-body">
+						<nav>
+							<div class="nav nav-tabs" id="nav-tab" role="tablist">
+								<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Usuario Alumno</button>
+								<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Datos Generales</button>
+								<button class="nav-link" id="nav-profileD-tab" data-bs-toggle="tab" data-bs-target="#nav-profileD" type="button" role="tab" aria-controls="nav-profileD" aria-selected="false">Domicilio</button>
+								<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Tutor</button>
+							</div>
+						</nav>
+						<form method="POST" enctype="multipart/form-data">
+							<div class="tab-content" id="nav-tabContent">
+								{% csrf_token %}
+								<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label>Usuario {{cancion.username}}</label>
+											<input type="text" name="username" id="username" class="form-control">
+										</div>
+										<div class="form-group col-md-6">
+											<label> Contraseña {{cancion.password}}</label>
+											<input type="password" name="password" id="password" class="form-control">
+										</div>
+										<div align="center">
+											<br>
+											<button type="button" name="next" id="next" class="next action-button btn-primary" aria-controls="nav-profile-tab">Next </button> 
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label>Matricula</label>
+											<input type="text" name="matricula" id="matricula" class="form-control">
+											<label>Nombre</label>
+											<input type="text" name="nombreA" id="nombreA" class="form-control" placeholder="{{Alumno.nombreA}}">
+											<label>Segundo Nombre</label>
+											<input type="text" name="snombreA" id="snombreA" class="form-control">
+											<label>Apellido Paterno</label>
+											<input type="text" name="apellidoPA" id="apellidoPA" class="form-control" placeholder="{{Alumno.apellidoPA}}">
+											<label>Apellido Materno</label>
+											<input type="text" name="apellidoMA" id="apellidoMA" class="form-control" placeholder="{{Alumno.apellidoMA}}">
+											<label>Edad</label>
+											<input type="number" name="edad" id="edad" class="form-control">
+										</div>
+										<div class="form-group col-md-6">
+											<label> Especialidad</label>
+											<select class="form-select" name="nombreE" id="nombreE">
+												<option selected>Seleccione una especialidad </option>
+												<option value="Bachillerato">Bachillerato</option>
+												<option value="Mecanica Dicel">Mecanica Dicel</option>
+												<option value="Mecanica Gasolina">Mecanica Gasolina</option>
+												<option value="Mecanica de Motos">Mecanica de Motos</option>
+												<option value="Ing. Mecanica">Ing Mecanica</option>
+											</select>
+											<label> Inicio de Curso </label>
+											<input type="date" name="inicioCurso" id="inicioCurso" class="form-control">
+											<label>Final de Curso</label>
+											<input type="date" name="finalCurso" id="finalCurso" class="form-control">
+											<label> Convenio </label>
+											<input type="text" name="convenio" id="convenio" class="form-control">
+											<label>Observaciones</label>
+											<input type="text" name="observaciones" id="observaciones" class="form-control">
+										</div>
+										<div align="center">
+											<br>
+											<button type="button" name="previous" id="previous" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Previous</button> 
+											<button type="button" name="next1" id="next1" class="next action-button btn-primary" aria-controls="nav-profileD-tab">Next</button> 
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="nav-profileD" role="tabpanel" aria-labelledby="nav-profileD-tab">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label>Calle</label>
+											<input type="text" name="calle" id="calle" class="form-control">
+											<label>Colonia</label>
+											<input type="text" name="colonia" id="colonia" class="form-control">
+											<label>Codigo Postal</label>
+											<input type="text" name="codigopostal" id="codigopostal" class="form-control">
+											<label>No. Interior</label>
+											<input type="text" name="lote" id="lote" class="form-control">
+										</div>
+										<div class="form-group col-md-6">
+											<label>No. Exterior</label>
+											<input type="text" name="manzana" id="manzana" class="form-control">
+											<label>Delegación o Municipio</label>
+											<input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control">
+											<label>Ciudad o Estado</label>
+											<select class="form-select" name="ciudadOestado" id="ciudadOestado">
+												<option selected>Seleccionar opción</option>
+												<option value="Estado de México">Ciudad de México</option>
+												<option value="Ciudad de México">Estado de México</option>
+											</select>
+										</div>
+										<br>
+										<br>
+										<div align="center">
+											<br>
+											<button type="button" name="previous1" id="previous1" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button> 
+											<button type="button" name="next2" id="next2" class="next action-button btn-primary" aria-controls="nav-contact-tab">Next</button>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label>Nombre</label>
+											<input type="text" name="nombreT" id="nombreT" class="form-control" placeholder="{{Tutor.nombreT}}">
+											<label>Apellido Paterno</label>
+											<input type="text" name="apellidoMT" id="apellidoMT" class="form-control" placeholder="{{Tutor.apellidoPT}}">
+											<label>Apellido Materno</label>
+											<input type="text" name="apellidoPT" id="apellidoPT" class="form-control" placeholder="{{Tutor.apellidoMT}}">
+										</div>
+										<div class="form-group col-md-6">
+											<label>Télefono</label>
+											<input type="number" name="telefono" id="telefono" class="form-control">
+											<label>Padre o Tutor</label>
+											<select class="form-select" name="padreT" id="padreT">
+												<option selected>Seleccionar opción</option>
+												<option value="Padre">Padre</option>
+												<option value="Madre">Madre</option>
+												<option value="Tutor">Tutor</option>
+											</select>
+										</div>
+										<br>
+										<br>
+										<div align="center">
+											<br>
+											<button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button>
+											<button type="submit" class="submit action-button btn-warning">Actualizar</button>
+											<button onclick="location.href='alumnos'" class="submit action-button btn-danger"> Cancelar </button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="jumbotron" align="center">
-	<div class="container">
-		<div class="card" style="width: 30rem; background: #AED6F1; font-size: 22">
-			<div class="card-body">
-				<form method="POST">
-					{% csrf_token %}
-					{{ form.as_p }}
-					<br>
-					<button type="submit" class="btn btn-warning" onclick="mensaje()">Actualizar</button>
-					<p onclick="cancelar()">
-						<button onclick="location.href='alumnos'" class="btn btn-secondary"> CANCELAR </button>
-					</p>
-				</form>
-			</div>
+<script type="text/javascript">
+	window.addEventListener("load", function() {
+		let tabs = document.querySelectorAll(".nav-tabs button");
+
+		let nextTab = document.getElementById("next");
+
+		let i = 0;
+
+		nextTab.addEventListener("click", function() {
+
+			i = (i == (tabs.length - 1)) ? 0 : i + 1;
+			tabs[1].click();
+
+		}, false);
+	}, false);
+
+	window.addEventListener("load", function() {
+		let tabs1 = document.querySelectorAll(".nav-tabs button");
+
+		let nextTab1 = document.getElementById("next1");
+
+		let i = 1;
+
+		nextTab1.addEventListener("click", function() {
+
+			i = (i == (tabs1.length - 1)) ? 0 : i + 1;
+			tabs1[2].click();
+
+		}, false);
+	}, false);
+
+	window.addEventListener("load", function() {
+		let tabs2 = document.querySelectorAll(".nav-tabs button");
+
+		let nextTab2 = document.getElementById("next2");
+
+		let i = 1;
+
+		nextTab2.addEventListener("click", function() {
+
+			i = (i == (tabs2.length - 1)) ? 0 : i + 1;
+			tabs2[3].click();
+
+		}, false);
+	}, false);
+</script>
+
+<script type="text/javascript">
+	window.addEventListener("load", function() {
+		let tabs3 = document.querySelectorAll(".nav-tabs button");
+
+		let previousTab = document.getElementById("previous");
+
+		let i = 0;
+
+		previousTab.addEventListener("click", function() {
+
+			i = (i == (tabs3.length - 1)) ? 0 : i + 1;
+			tabs3[0].click();
+
+		}, false);
+	}, false);
+
+	window.addEventListener("load", function() {
+		let tabs4 = document.querySelectorAll(".nav-tabs button");
+
+		let previousTab1 = document.getElementById("previous1");
+
+		let i = 1;
+
+		previousTab1.addEventListener("click", function() {
+
+			i = (i == (tabs4.length - 1)) ? 0 : i + 1;
+			tabs4[1].click();
+
+		}, false);
+	}, false);
+
+	window.addEventListener("load", function() {
+		let tabs5 = document.querySelectorAll(".nav-tabs button");
+
+		let previousTab2 = document.getElementById("previous2");
+
+		let i = 1;
+
+		previousTab2.addEventListener("click", function() {
+
+			i = (i == (tabs5.length - 1)) ? 0 : i + 1;
+			tabs5[2].click();
+
+		}, false);
+	}, false);
+</script>
+
+<script type="text/javascript">
+
+</script>
+
+{%endblock%}
 
 
 
-			<script type="text/javascript">
-				function mensaje(){
-					Swal.fire({
-						position: 'center',
-						icon: 'success',
-						title: 'Actualizado con éxito',
-						ConfirmButton: false,
-						timer: 3500
-					})
-				}
-				function cancelar(){
-					Swal.fire({
-						position: 'center',
-						icon: 'error',
-						title: 'Cancelado',
-						showConfirmButton: false,
-						timer: 1500
-					})
-				}
-			</script>
-		</div>
-	</div>
-  </div>
-</div>
-{% endblock %}
+<script type="text/javascript">
+	function mensaje(){
+		Swal.fire({
+			position: 'center',
+			icon: 'success',
+			title: 'Actualizado con éxito',
+			ConfirmButton: false,
+			timer: 3500
+		})
+	}
+	function cancelar(){
+		Swal.fire({
+			position: 'center',
+			icon: 'error',
+			title: 'Cancelado',
+			showConfirmButton: false,
+			timer: 1500
+		})
+	}
+</script>

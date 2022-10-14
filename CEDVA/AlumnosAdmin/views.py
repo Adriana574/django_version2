@@ -41,10 +41,20 @@ class AlumnoListView(ListView):
     context_object_name='listas'
 
 class Actualizar(UpdateView):
-    model=Alumno
     template_name='actualiza.html'
-    context_object_name='cancion'
+    model=Alumno
+    context_object_name='alumno'
     fields=('nombreA', 'apellidoPA', 'apellidoMA')
+
+    second_model=Tutor
+    context_object_name='tutor'
+    fields=('nombreT', 'apellidoPT', 'apellidoMT')
+
+    context = {
+        'alumno': alumno,
+        'tutor': tutor
+
+    }
 
     def get_success_url(self):
         return reverse('alumnos')
@@ -58,7 +68,7 @@ class Eliminar(DeleteView):
     def get_success_url(self):
         return reverse('alumnos')
     
-
+@staff_member_required(login_url="/loginuser/") 
 def registrarAlumno(request):
     form = FormularioTutor(request.POST or None)
     if form.is_valid():
@@ -97,7 +107,7 @@ def registrarAlumno(request):
         nomU = form_data.get("username")
         pas = form_data.get("password") 
 
-        obj4 = User.objects.create_user(username=nomU, password=pas)
+        obj4 = User.objects.create_user(username=nomU, password=password)
 
     AlumForm = FormularioAlumno(request.POST or None)
     if AlumForm.is_valid():

@@ -16,6 +16,7 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from AlumnosAdmin.forms import *
+from django.shortcuts import get_object_or_404
 
     
 @staff_member_required  
@@ -40,97 +41,69 @@ class AlumnoListView(ListView):
     template_name='alumnos.html'
     context_object_name='listas'
 
-class Actualizar(UpdateView):
-    template_name='actualiza.html'
-    model=Alumno
-    context_object_name='alumno'
-    fields=('nombreA', 'apellidoPA', 'apellidoMA')
-
-    second_model=Tutor
-    context_object_name='tutor'
-    fields=('nombreT', 'apellidoPT', 'apellidoMT')
-
-    context = {
-        'alumno': alumno,
-        'tutor': tutor
-
-    }
-
-    def get_success_url(self):
-        return reverse('alumnos')
-
-
+    
 class Eliminar(DeleteView):
     model=Alumno
     template_name='AlumnoElimina.html'
     success_url=reverse_lazy('alumnos')
 
+    def get_context_data(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        context = super().get_context_data(**kwargs)
+        context['Tutor'] = Tutor.objects.get(pk=pk)
+        context['Direccion'] = Direccion.objects.get(pk=pk)
+        context['Alumno'] = Alumno.objects.get(pk=pk)
+        return context 
+
     def get_success_url(self):
         return reverse('alumnos')
     
-@staff_member_required(login_url="/loginuser/") 
-def registrarAlumno(request):
-    form = FormularioTutor(request.POST or None)
-    if form.is_valid():
-        form_data = form.cleaned_data
-        nt = form_data.get("nombreT")
-        apt = form_data.get("apellidoPT")
-        amt = form_data.get("apellidoMT") 
-        tel = form_data.get("telefono") 
-        pt = form_data.get("padreT") 
-                
-        obj = Tutor.objects.create(nombreT=nt, apellidoPT=apt, apellidoMT=amt, telefono=tel, padreT=pt)
 
-    Dirform = FormularioDireccion(request.POST or None)
-    if Dirform.is_valid():
-        form_data = Dirform.cleaned_data
-        cal = form_data.get("calle")
-        lot = form_data.get("lote")
-        manz = form_data.get("manzana")
-        col = form_data.get("colonia")
-        dm = form_data.get("delegacionMunicipio")
-        cp1 = form_data.get("codigopostal")
-        cie = form_data.get("ciudadOestado")
+class registrarAlumno(CreateView):
+    model = Alumno
+    template_name = 'registroAlumno.html'
+    form_class = FormularioAlumno
+    second_form_class = FormularioTutor
+    three_form_class = FormularioDireccion
+    four_form_class = FormularioEspecialidad
+    five_form_class = FormularioUsuario
+ 
+    success_url = reverse_lazy('alumnos')
 
-        obj2 = Direccion.objects.create(calle=cal, lote=lot, manzana=manz, colonia=col, delegacionMunicipio=dm, codigopostal=cp1, ciudadOestado=cie)
+    def get_context_data(self, **kwargs):
+        context = super(registrarAlumno, self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+        if 'form3' not in context:
+            context['form3'] = self.three_form_class(self.request.GET)
+        if 'form4' not in context:
+            context['form4'] = self.four_form_class(self.request.GET)
+        if 'form5' not in context:
+            context['form5'] = self.five_form_class(self.request.GET)
 
-    EspeForm = FormularioEspecialidad(request.POST or None)
-    if EspeForm.is_valid():
-        form_data = EspeForm.cleaned_data
-        nomE = form_data.get("nombreE")
+            return context
 
-        obj3 = Especialidad.objects.create(nombreE=nomE)
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        form3 = self.three_form_class(request.POST)
+        form4 = self.four_form_class(request.POST)
+        form5 = self.five_form_class(request.POST)
 
-    UserForm = FormularioUsuario(request.POST or None)
-    if UserForm.is_valid():
-        form_data = UserForm.cleaned_data
-        nomU = form_data.get("username")
-        pas = form_data.get("password") 
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid() and form5.is_valid():
+            registro = form.save(commit=False)
+            registro.tutor = form2.save()
+            registro.direccion = form3.save()
+            registro.especialidad = form4.save()
+            registro.user = form5.save()
+            registro.save()
+            return HttpResponseRedirect(self.get_success_url())
 
-        obj4 = User.objects.create_user(username=nomU, password=password)
+        else:
+            return self.render_to_response(self.get_context_data(form=form, form2=form2, form3=form3, form4=form4, form5=form5))
 
-    AlumForm = FormularioAlumno(request.POST or None)
-    if AlumForm.is_valid():
-        form_data = AlumForm.cleaned_data
-        mat = form_data.get("matricula")
-        nomA = form_data.get("nombreA")
-        snomA = form_data.get("snombreA")
-        appA = form_data.get("apellidoPA")
-        apmA = form_data.get("apellidoMA")
-        eda = form_data.get("edad")
-        con = form_data.get("convenio")
-        iniC = form_data.get("inicioCurso")
-        finC = form_data.get("finalCurso")
-        obser = form_data.get("observaciones")
-
-        obj5 = Alumno.objects.create(matricula=mat, nombreA=nomA, snombreA=snomA, apellidoPA=appA, apellidoMA=apmA, edad=eda, convenio=con, inicioCurso=iniC, finalCurso=finC, observaciones=obser)
-
-    context = {
-        'form': form,
-        'Dirform': Dirform,
-        'EspeForm': EspeForm,
-        'UserForm': UserForm,
-        'AlumForm': AlumForm
-    }
-        
-    return render(request, "registroAlumno.html", context)
+class actualizarAlumnos(UpdateView)
+    model = Alumno

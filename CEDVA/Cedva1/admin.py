@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Tutor
 from .models import Direccion
-from .models import Usuario
 from .models import Escuela
 from .models import Especialidad
 from .models import Administrador
@@ -14,7 +13,6 @@ class TutorAdmin(admin.ModelAdmin):
 		
 admin.site.register(Tutor,TutorAdmin)
 admin.site.register(Direccion)
-admin.site.register(Usuario)
 admin.site.register(Escuela)
 admin.site.register(Especialidad)
 admin.site.register(Administrador)

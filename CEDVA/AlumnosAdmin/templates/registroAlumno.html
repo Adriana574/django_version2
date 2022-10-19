@@ -20,17 +20,17 @@
                 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Tutor</button>
               </div>
             </nav>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" action="">
               <div class="tab-content" id="nav-tabContent">
                 {% csrf_token %}
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                   <div class="row">
                     <div class="form-group col-md-6">
-                      <label>Usuario</label>
+                      <label for="username">Usuario</label>
                       <input type="text" name="username" id="username" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
-                      <label> Contraseña </label>
+                      <label for="password"> Contraseña </label>
                       <input type="password" name="password" id="password" class="form-control">
                     </div>
                     <div align="center">
@@ -58,12 +58,9 @@
                     <div class="form-group col-md-6">
                       <label> Especialidad</label>
                       <select class="form-select" name="nombreE" id="nombreE">
-                        <option selected>Seleccione una especialidad </option>
-                        <option value="Bachillerato">Bachillerato</option>
-                        <option value="Mecanica Dicel">Mecanica Dicel</option>
-                        <option value="Mecanica Gasolina">Mecanica Gasolina</option>
-                        <option value="Mecanica de Motos">Mecanica de Motos</option>
-                        <option value="Ing. Mecanica">Ing Mecanica</option>
+                        {% for choice in form4.nombreE %}
+                          {{choice}}
+                        {% endfor %}
                       </select>
                       <label> Inicio de Curso </label>
                       <input type="date" name="inicioCurso" id="inicioCurso" class="form-control">

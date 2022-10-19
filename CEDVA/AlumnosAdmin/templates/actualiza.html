@@ -9,7 +9,7 @@
 			<div>
 				<div class="card">
 					<div class="card-header">
-						Registrar Alumnos
+						Actualizar Alumnos
 					</div>
 					<div class="card-body">
 						<nav>
@@ -20,17 +20,17 @@
 								<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Tutor</button>
 							</div>
 						</nav>
-						<form method="POST" enctype="multipart/form-data">
+						<form method="POST" enctype="multipart/form-data" action="">
 							<div class="tab-content" id="nav-tabContent">
 								{% csrf_token %}
 								<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 									<div class="row">
 										<div class="form-group col-md-6">
-											<label>Usuario {{cancion.username}}</label>
+											<label>Usuario</label>
 											<input type="text" name="username" id="username" class="form-control">
 										</div>
 										<div class="form-group col-md-6">
-											<label> Contraseña {{cancion.password}}</label>
+											<label> Contraseña</label>
 											<input type="password" name="password" id="password" class="form-control">
 										</div>
 										<div align="center">
@@ -45,13 +45,13 @@
 											<label>Matricula</label>
 											<input type="text" name="matricula" id="matricula" class="form-control">
 											<label>Nombre</label>
-											<input type="text" name="nombreA" id="nombreA" class="form-control" placeholder="{{Alumno.nombreA}}">
+											<input type="text" name="nombreA" id="nombreA" class="form-control" placeholder="{{AlumForm.nombreA}}">
 											<label>Segundo Nombre</label>
 											<input type="text" name="snombreA" id="snombreA" class="form-control">
 											<label>Apellido Paterno</label>
-											<input type="text" name="apellidoPA" id="apellidoPA" class="form-control" placeholder="{{Alumno.apellidoPA}}">
+											<input type="text" name="apellidoPA" id="apellidoPA" class="form-control" placeholder="{{AlumForm.apellidoPA}}">
 											<label>Apellido Materno</label>
-											<input type="text" name="apellidoMA" id="apellidoMA" class="form-control" placeholder="{{Alumno.apellidoMA}}">
+											<input type="text" name="apellidoMA" id="apellidoMA" class="form-control" placeholder="{{AlumForm.apellidoMA}}">
 											<label>Edad</label>
 											<input type="number" name="edad" id="edad" class="form-control">
 										</div>
@@ -118,18 +118,18 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label>Nombre</label>
-											<input type="text" name="nombreT" id="nombreT" class="form-control" placeholder="{{Tutor.nombreT}}">
+											<input type="text" name="nombreT" id="nombreT" class="form-control">
 											<label>Apellido Paterno</label>
-											<input type="text" name="apellidoMT" id="apellidoMT" class="form-control" placeholder="{{Tutor.apellidoPT}}">
+											<input type="text" name="apellidoMT" id="apellidoMT" class="form-control">
 											<label>Apellido Materno</label>
-											<input type="text" name="apellidoPT" id="apellidoPT" class="form-control" placeholder="{{Tutor.apellidoMT}}">
+											<input type="text" name="apellidoPT" id="apellidoPT" class="form-control">
 										</div>
 										<div class="form-group col-md-6">
 											<label>Télefono</label>
 											<input type="number" name="telefono" id="telefono" class="form-control">
 											<label>Padre o Tutor</label>
 											<select class="form-select" name="padreT" id="padreT">
-												<option selected>Seleccionar opción</option>
+												<option>S</option>
 												<option value="Padre">Padre</option>
 												<option value="Madre">Madre</option>
 												<option value="Tutor">Tutor</option>
@@ -140,7 +140,7 @@
 										<div align="center">
 											<br>
 											<button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button>
-											<button type="submit" class="submit action-button btn-warning">Actualizar</button>
+											<button type="submit" value="Submit" class="submit action-button btn-warning">Actualizar</button>
 											<button onclick="location.href='alumnos'" class="submit action-button btn-danger"> Cancelar </button>
 										</div>
 									</div>

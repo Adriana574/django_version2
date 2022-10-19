@@ -20,10 +20,11 @@ class FormularioEspecialidad(ModelForm):
 class FormularioUsuario(ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'password')
-    
+        fields = ('username', 'password',)
+
 
 class FormularioAlumno(ModelForm):
     class Meta:
         model = Alumno
         fields = ('matricula', 'nombreA', 'snombreA', 'apellidoPA', 'apellidoMA', 'edad', 'convenio', 'inicioCurso', 'finalCurso', 'observaciones')
+        

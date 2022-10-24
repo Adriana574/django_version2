@@ -22,5 +22,7 @@ urlpatterns = [
     path('',include('Cedva1.urls')),
     path('',include('alumnosC.urls')),
     path('',include('AlumnosAdmin.urls')),
-    path('',include('Pago.urls')),]
+    path('',include('Pago.urls')),
+    path('',include('administradorCEDVA.urls')),
+    ]
     

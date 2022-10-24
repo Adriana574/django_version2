@@ -4,7 +4,15 @@
 <div class="container" align="center">
 	<br>
 	<br>
-	<h1 class="display-4" align="center" style="font-family: Calisto MT; color: black;"><b>Pagos del alumno</b></h1>
+	<h1 class="display-4" align="center" style="font-family: Calisto MT; color: black;"><b>Pagos del Alumno</b></h1>
+	<div align="left">
+		<a href="registroPagos" class="btn btn-primary" style="color: white;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+			<path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+			<path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+		</svg> Registrar Pago</a>
+		
+	</div>
 	<br>
 	<div align="left">
 		
@@ -24,21 +32,22 @@
 				<th scope="col" style="text-align: center;">Eliminar</th>
 			</tr>
 		</thead>
+		{% for context in pago %}
 		<tbody align="center">
-			{% for i in Pago %}
 			<tr>
-				<td>{{i.idpago}}</td>
-				<td>{{i.folio}}</td>
-				<td>{{i.tipoPago}}</td>
-				<td>{{i.monto}}</td>
-				<td>{{i.fechaPago}}</td>
-				<td>{{i.mesPagado}}</td>
-				<td>{{i.horapago}}</td>
-				<td><button class="btn btn-warning"><a href="{{i.pk}}/pago" style="color: black"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-				<td><button class="btn btn-danger"><a href="{{i.pk}}/deletePago" style="color: black"><i class="fa-solid fa-trash-can" style="color:white;"></i></a></button></td>
-			</tr>
-			{%endfor%}
-		</tbody>
+				<td>{{context.id}}</td>
+				<td>{{context.folio}}</td>
+				<td>{{context.tipoPago}}</td>
+				<td>{{context.monto}}</td>
+				<td>{{context.fechaPago}}</td>
+				<td>{{context.mesPagado}}</td>
+				<td>{{context.horapago}}</td>
+
+				<td><button class="btn btn-warning"><a href="/{{context.pk}}/pago" style="color: black"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
+				<td><button class="btn btn-danger"><a href="/{{context.pk}}/deletePago" style="color: black"><i class="fa-solid fa-trash-can" style="color:white;"></i></a></button></td>
+			</tr> 
+			{% endfor %}
+		</tbody> 
 	</table>
 
 </div>

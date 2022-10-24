@@ -6,3 +6,17 @@ especialidades = (
 		('Mécanica a diésel', 'Mécanica a diésel'),
 		('Ingenieria en Mecánica Automotriz', 'Ingenieria en Mecánica Automotriz')
 	)
+
+
+ciudades = (
+		('p', 'Seleccione opción'),
+		('Estado de México', 'Estado de México'),
+		('Ciudad de México', 'Ciudad de México')
+	)
+
+padretutores = (
+		('p', 'Seleccione opción'),
+		('Padre', 'Padre'),
+		('Madre', 'Madre'),
+		('Tutor', 'Tutor')
+	)

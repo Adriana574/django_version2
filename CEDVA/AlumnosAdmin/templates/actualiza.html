@@ -27,15 +27,15 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label>Usuario</label>
-											<input type="text" name="username" id="username" class="form-control">
+											<input type="text" name="username" id="username" class="form-control" value="{{form5.username.value}}">
 										</div>
 										<div class="form-group col-md-6">
-											<label> Contraseña</label>
-											<input type="password" name="password" id="password" class="form-control">
+											<label> Correo del alumno</label>
+											<input type="email" name="email" id="email" class="form-control" value="{{form5.email.value}}">
 										</div>
 										<div align="center">
 											<br>
-											<button type="button" name="next" id="next" class="next action-button btn-primary" aria-controls="nav-profile-tab">Next </button> 
+											<button type="button" name="next" id="next" class="next action-button btn-primary" aria-controls="nav-profile-tab">Siguiente </button> 
 										</div>
 									</div>
 								</div>
@@ -43,41 +43,38 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label>Matricula</label>
-											<input type="text" name="matricula" id="matricula" class="form-control">
+											<input type="text" name="matricula" id="matricula" class="form-control" value="{{form.matricula.value}}">
 											<label>Nombre</label>
-											<input type="text" name="nombreA" id="nombreA" class="form-control" placeholder="{{AlumForm.nombreA}}">
+											<input type="text" name="nombreA" id="nombreA" class="form-control" value="{{form.nombreA.value}}">
 											<label>Segundo Nombre</label>
-											<input type="text" name="snombreA" id="snombreA" class="form-control">
+											<input type="text" name="snombreA" id="snombreA" class="form-control" value="{{form.snombreA.value}}">
 											<label>Apellido Paterno</label>
-											<input type="text" name="apellidoPA" id="apellidoPA" class="form-control" placeholder="{{AlumForm.apellidoPA}}">
+											<input type="text" name="apellidoPA" id="apellidoPA" class="form-control" value="{{form.apellidoPA.value}}">
 											<label>Apellido Materno</label>
-											<input type="text" name="apellidoMA" id="apellidoMA" class="form-control" placeholder="{{AlumForm.apellidoMA}}">
+											<input type="text" name="apellidoMA" id="apellidoMA" class="form-control" value="{{form.apellidoMA.value}}">
 											<label>Edad</label>
-											<input type="number" name="edad" id="edad" class="form-control">
+											<input type="number" name="edad" id="edad" class="form-control" value="{{form.edad.value}}">
 										</div>
 										<div class="form-group col-md-6">
 											<label> Especialidad</label>
 											<select class="form-select" name="nombreE" id="nombreE">
-												<option selected>Seleccione una especialidad </option>
-												<option value="Bachillerato">Bachillerato</option>
-												<option value="Mecanica Dicel">Mecanica Dicel</option>
-												<option value="Mecanica Gasolina">Mecanica Gasolina</option>
-												<option value="Mecanica de Motos">Mecanica de Motos</option>
-												<option value="Ing. Mecanica">Ing Mecanica</option>
+												{% for choice in form4.nombreE %}
+												{{choice}}
+												{% endfor %}
 											</select>
 											<label> Inicio de Curso </label>
-											<input type="date" name="inicioCurso" id="inicioCurso" class="form-control">
+											{{form.inicioCurso}}
 											<label>Final de Curso</label>
-											<input type="date" name="finalCurso" id="finalCurso" class="form-control">
+											{{form.finalCurso}}
 											<label> Convenio </label>
-											<input type="text" name="convenio" id="convenio" class="form-control">
+											<input type="text" name="convenio" id="convenio" class="form-control" value="{{form.convenio.value}}">
 											<label>Observaciones</label>
-											<input type="text" name="observaciones" id="observaciones" class="form-control">
+											<input type="text" name="observaciones" id="observaciones" class="form-control" value="{{form.observaciones.value}}">
 										</div>
 										<div align="center">
 											<br>
-											<button type="button" name="previous" id="previous" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Previous</button> 
-											<button type="button" name="next1" id="next1" class="next action-button btn-primary" aria-controls="nav-profileD-tab">Next</button> 
+											<button type="button" name="previous" id="previous" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Anterior</button> 
+											<button type="button" name="next1" id="next1" class="next action-button btn-primary" aria-controls="nav-profileD-tab">Siguiente</button> 
 										</div>
 									</div>
 								</div>
@@ -85,32 +82,32 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label>Calle</label>
-											<input type="text" name="calle" id="calle" class="form-control">
+											<input type="text" name="calle" id="calle" class="form-control" value="{{form3.calle.value}}">
 											<label>Colonia</label>
-											<input type="text" name="colonia" id="colonia" class="form-control">
+											<input type="text" name="colonia" id="colonia" class="form-control" value="{{form3.colonia.value}}">
 											<label>Codigo Postal</label>
-											<input type="text" name="codigopostal" id="codigopostal" class="form-control">
+											<input type="text" name="codigopostal" id="codigopostal" class="form-control" value="{{form3.codigopostal.value}}">
 											<label>No. Interior</label>
-											<input type="text" name="lote" id="lote" class="form-control">
+											<input type="text" name="lote" id="lote" class="form-control" value="{{form3.lote.value}}">
 										</div>
 										<div class="form-group col-md-6">
 											<label>No. Exterior</label>
-											<input type="text" name="manzana" id="manzana" class="form-control">
+											<input type="text" name="manzana" id="manzana" class="form-control" value="{{form3.manzana.value}}">
 											<label>Delegación o Municipio</label>
-											<input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control">
+											<input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control" value="{{form3.delegacionMunicipio.value}}">
 											<label>Ciudad o Estado</label>
 											<select class="form-select" name="ciudadOestado" id="ciudadOestado">
-												<option selected>Seleccionar opción</option>
-												<option value="Estado de México">Ciudad de México</option>
-												<option value="Ciudad de México">Estado de México</option>
+												{% for choice1 in form3.ciudadOestado %}
+												{{choice1}}
+												{% endfor %}
 											</select>
 										</div>
 										<br>
 										<br>
 										<div align="center">
 											<br>
-											<button type="button" name="previous1" id="previous1" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button> 
-											<button type="button" name="next2" id="next2" class="next action-button btn-primary" aria-controls="nav-contact-tab">Next</button>
+											<button type="button" name="previous1" id="previous1" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Anterior</button> 
+											<button type="button" name="next2" id="next2" class="next action-button btn-primary" aria-controls="nav-contact-tab">Siguiente</button>
 										</div>
 									</div>
 								</div>
@@ -118,30 +115,29 @@
 									<div class="row">
 										<div class="form-group col-md-6">
 											<label>Nombre</label>
-											<input type="text" name="nombreT" id="nombreT" class="form-control">
+											<input type="text" name="nombreT" id="nombreT" class="form-control" value="{{form2.nombreT.value}}">
 											<label>Apellido Paterno</label>
-											<input type="text" name="apellidoMT" id="apellidoMT" class="form-control">
+											<input type="text" name="apellidoMT" id="apellidoPT" class="form-control" value="{{form2.apellidoPT.value}}">
 											<label>Apellido Materno</label>
-											<input type="text" name="apellidoPT" id="apellidoPT" class="form-control">
+											<input type="text" name="apellidoPT" id="apellidoMT" class="form-control" value="{{form2.apellidoMT.value}}">
 										</div>
 										<div class="form-group col-md-6">
 											<label>Télefono</label>
-											<input type="number" name="telefono" id="telefono" class="form-control">
+											<input type="number" name="telefono" id="telefono" class="form-control" value="{{form2.telefono.value}}">
 											<label>Padre o Tutor</label>
 											<select class="form-select" name="padreT" id="padreT">
-												<option>S</option>
-												<option value="Padre">Padre</option>
-												<option value="Madre">Madre</option>
-												<option value="Tutor">Tutor</option>
+												{% for choice2 in form2.padreT %}
+												{{choice2}}
+												{% endfor %}
 											</select>
 										</div>
 										<br>
 										<br>
 										<div align="center">
 											<br>
-											<button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button>
+											<button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Anterior</button>
 											<button type="submit" value="Submit" class="submit action-button btn-warning">Actualizar</button>
-											<button onclick="location.href='alumnos'" class="submit action-button btn-danger"> Cancelar </button>
+											<button onclick="location.href=''" class="submit action-button btn-danger"> Cancelar </button>
 										</div>
 									</div>
 								</div>

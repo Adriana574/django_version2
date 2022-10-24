@@ -11,11 +11,11 @@
 		<div class="alert alert-primary" role="alert">
 			{% csrf_token %} 
 			<p>¿Seguro que desea eliminar: <strong>{{ pagoelimina.folio }}</strong>?</p>
-			<button onclick="eliminaPago()" id="errorAlert" class="btn btn-danger">Borrar</button>
+			<button type="submit" id="errorAlert" class="btn btn-danger">Borrar</button>
 		</div>
 	</form>
 	<p onclick="cancelarPago()">
-		<button onclick="location.href='/pagoalumno'" class="btn btn-secondary"> CANCELAR </button>
+		<button onclick="location.href='/{{pagoelimina.pk}}/pagoalumno'" class="btn btn-secondary"> CANCELAR </button>
 	</p>
 </div>
 

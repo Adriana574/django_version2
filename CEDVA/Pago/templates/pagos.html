@@ -22,17 +22,16 @@
 		<tbody>
 			{% for i in listas %}
 			<tr align="center">
-				<td>{{i.idalumno}}</td>
+				<td>{{i.id}}</td>
 				<td>{{i.nombreA}}</td>
 				<td>{{i.apellidoPA}}</td>
 				<td>{{i.apellidoMA}}</td>
 				<td>{{i.observaciones}}</td>
-				<td><button type="button" class="btn btn-primary" ><a href="pagoalumno"><i class="fa-solid fa-eye" style="color: white;"></i></a></button></td>
+				<td><button type="button" class="btn btn-primary" ><a href="{{i.pk}}/pagoalumno"><i class="fa-solid fa-eye" style="color: white;"></i></a></button></td>
 			</tr>
 			{%endfor%}
 		</tbody>
-	</table>
-
-</div>
+	</table> 
+</div> 
 
 {%endblock%}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from AlumnosAdmin.choices import especialidades
+from AlumnosAdmin.choices import *
 
 
 class Tutor(models.Model):
@@ -9,7 +9,7 @@ class Tutor(models.Model):
 	apellidoPT=models.CharField(max_length=100)
 	apellidoMT=models.CharField(max_length=100)
 	telefono=models.CharField(max_length=100)
-	padreT=models.CharField(max_length=100)
+	padreT=models.CharField(max_length=100, choices=padretutores, default='p')
 	created=models.DateTimeField(auto_now_add=True)
 	update=models.DateTimeField(auto_now_add=True)
 
@@ -28,7 +28,7 @@ class Direccion(models.Model):
 	colonia=models.CharField(max_length=100)
 	delegacionMunicipio=models.CharField(max_length=100)
 	codigopostal=models.IntegerField()
-	ciudadOestado=models.CharField(max_length=100)
+	ciudadOestado=models.CharField(max_length=100, choices=ciudades, default='p')
 	created=models.DateTimeField(auto_now_add=True)
 	update=models.DateTimeField(auto_now_add=True)
 
@@ -62,7 +62,7 @@ class Especialidad(models.Model):
 		verbose_name_plural = "especialidades"
 
 	def __str__(self):
-		return self.nombreE		
+		return self.nombreE	
 
 class Administrador(models.Model):
 	escuela = models.ForeignKey(Escuela,related_name="subcategories5",blank=True , null= True, on_delete=models.CASCADE)
@@ -120,4 +120,4 @@ class Pago(models.Model):
 	update=models.DateTimeField(auto_now_add=True) 
 
 	def __str__(self):
-		return self.folio + '- by' + self.alumno.matricula
+		return self.tipoPago

@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <div>
-      <div>
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="card">
           <div class="card-header">
             Registrar Alumnos
@@ -25,13 +25,8 @@
                 {% csrf_token %}
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                   <div class="row">
-                    <div class="form-group col-md-6">
-                      <label for="username">Usuario</label>
-                      <input type="text" name="username" id="username" class="form-control">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="password"> Contraseña </label>
-                      <input type="password" name="password" id="password" class="form-control">
+                    <div class="form-group col-md-7">
+                      {{form5}}
                     </div>
                     <div align="center">
                       <br>
@@ -97,9 +92,9 @@
                       <input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control">
                       <label>Ciudad o Estado</label>
                       <select class="form-select" name="ciudadOestado" id="ciudadOestado">
-                        <option selected>Seleccionar opción</option>
-                        <option value="Estado de México">Ciudad de México</option>
-                        <option value="Ciudad de México">Estado de México</option>
+                        {% for choice1 in form3.ciudadOestado %}
+                          {{choice1}}
+                        {% endfor %}
                       </select>
                     </div>
                     <br>
@@ -117,19 +112,18 @@
                       <label>Nombre</label>
                       <input type="text" name="nombreT" id="nombreT" class="form-control">
                       <label>Apellido Paterno</label>
-                      <input type="text" name="apellidoMT" id="apellidoMT" class="form-control">
+                      <input type="text" name="apellidoMT" id="apellidoPT" class="form-control">
                       <label>Apellido Materno</label>
-                      <input type="text" name="apellidoPT" id="apellidoPT" class="form-control">
+                      <input type="text" name="apellidoPT" id="apellidoMT" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
                       <label>Télefono</label>
                       <input type="number" name="telefono" id="telefono" class="form-control">
                       <label>Padre o Tutor</label>
                       <select class="form-select" name="padreT" id="padreT">
-                        <option selected>Seleccionar opción</option>
-                        <option value="Padre">Padre</option>
-                        <option value="Madre">Madre</option>
-                        <option value="Tutor">Tutor</option>
+                       {% for choice2 in form2.padreT %}
+                          {{choice2}}
+                        {% endfor %}
                       </select>
                     </div>
                     <br>
@@ -137,7 +131,7 @@
                     <div align="center">
                       <br>
                       <button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button> 
-                      <button type="submit" name="submit" id="submit" class="submit action-button btn-success">Submit</button> 
+                      <button type="submit" name="submit" id="submit" class="submit action-button btn-success">Guardar</button> 
                     </div>
                   </div>
                 </div>

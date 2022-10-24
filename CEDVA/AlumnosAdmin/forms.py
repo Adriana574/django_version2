@@ -1,6 +1,8 @@
 from django.forms import ModelForm
 from Cedva1.models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 class FormularioTutor(ModelForm):
     class Meta:
@@ -17,14 +19,41 @@ class FormularioEspecialidad(ModelForm):
         model = Especialidad
         fields = ('nombreE',)
 
-class FormularioUsuario(ModelForm):
+class FormularioUsuario(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password',)
-
+        fields = [
+                'username',
+                'email', 
+                ]
+        labels = {
+                'username': 'Nombre de usuario',
+                'email': 'Correo del alumno',
+        } 
 
 class FormularioAlumno(ModelForm):
     class Meta:
         model = Alumno
         fields = ('matricula', 'nombreA', 'snombreA', 'apellidoPA', 'apellidoMA', 'edad', 'convenio', 'inicioCurso', 'finalCurso', 'observaciones')
         
+
+class FormularioUsuarioUpdate(ModelForm):
+    class Meta:
+        model = User
+        fields = [
+                'username',
+                'email', 
+                ]
+        labels = {
+                'username': 'Nombre de usuario',
+                'email': 'Correo del alumno',
+        } 
+
+
+class FormularioAlumnoUpdate(ModelForm):
+    inicioCurso = forms.DateField(label='Fecha inicio de Curso', widget=forms.TextInput(attrs={'type': 'date','class': 'form-control  datetimepicker'}), required=True)
+    finalCurso = forms.DateField(label='Fecha final de Curso', widget=forms.TextInput(attrs={'type': 'date','class': 'form-control  datetimepicker'}), required=True)
+    
+    class Meta:
+        model = Alumno
+        fields = ('matricula', 'nombreA', 'snombreA', 'apellidoPA', 'apellidoMA', 'edad', 'convenio', 'inicioCurso', 'finalCurso', 'observaciones')

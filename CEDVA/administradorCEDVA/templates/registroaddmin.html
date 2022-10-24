@@ -1,0 +1,56 @@
+{%extends 'director/base.html'%}
+{% load static %}
+{%block content%}
+
+<br>
+<div class="container">
+  <div class="row">
+    <div>
+      <div>
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+          <div class="card-header">
+            Registrar Administradores
+          </div>
+          <div class="card-body">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Usuario</button> 
+              </div>
+            </nav>
+            <form method="POST" enctype="multipart/form-data">
+              <div class="tab-content" id="nav-tabContent">
+                {% csrf_token %}
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Usuario</label>
+                      <input type="text" name="username" id="username" class="form-control">
+                      <label> Contraseña </label>
+                      <input type="password" name="password" id="password" class="form-control">
+                      <label> Email </label>
+                      <input type="email" name="email" id="email" class="form-control">
+                    </div> 
+                    <div class="form-group col-md-6"> 
+                      <label>Nombre</label>
+                      <input type="text" name="nombre" id="nombre" class="form-control">
+                      <label>Apellido Paterno</label>
+                      <input type="text" name="apellidoP" id="apellidoP" class="form-control">
+                      <label>Apellido Materno</label>
+                      <input type="text" name="apellidoM" id="apellidoM" class="form-control">
+                    </div>
+                    <div align="center">
+                      <br> 
+                      <button type="submit" name="submit" id="submit" class="submit action-button btn-success">Registrar</button> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+{% endblock %}

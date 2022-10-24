@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'alumnosC',
     'AlumnosAdmin',
     'Pago',
+    'administradorCEDVA',
 ]
 
 MIDDLEWARE = [

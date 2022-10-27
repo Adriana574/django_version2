@@ -9,11 +9,17 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/jquery-3.5.1.js">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
-	   <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Inicio del Alumno:{{ object.nombre }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+	<meta charset="utf-8">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Inicio del Alumno:{{ object.nombre }}</title>
+	<meta name="description" content="">
+
+	<meta name="viewport" content="width=device-width">
 	<title></title>
 </head>
 <body>
@@ -23,29 +29,37 @@
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="registroPago">Registrar pago</a>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="/registroPago">Registrar pago</a>
+					</li>
+					<li class="nav-item dropdown">
+						<li>
+							<a class="nav-link active" aria-current="page" href="/grafico">Avance de pagos</a>
 						</li>
-						<li class="nav-item dropdown">
-							<li>
-								<a class="nav-link active" aria-current="page" href="avance">Avance de pagos</a>
-							</li>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link active" aria-current="page" href="alumnos2">Datos personales</a>
-						</li>
-					</ul>
-					<form class="d-flex">
-						<button class="btn btn-outline-dark" type="submit"><a href="/logout2" style="color: black;">Salir</a></button>
-					</form>
-				</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link active" aria-current="page" href="{{user.id}}/alumnos2">Datos personales</a>
+					</li>
+					<li class="nav-item dropdown">
+						{% if user.is_authenticated %}
+						
+						<label class="nav-link active" aria-current="page"> <strong>{{user.username }}</strong></label>
+						
+						{% endif %}
+					</li>
+				</ul>
+				<form class="d-flex">
+					<button class="btn btn-outline-dark" type="submit"><a href="/logout2" style="color: black;">Salir</a></button>
+				</form>
 			</div>
-		</nav>
-		
+		</div>
+
+	</nav>
+
 	{%block content%}
-    
+
 
 
 	{%endblock%}

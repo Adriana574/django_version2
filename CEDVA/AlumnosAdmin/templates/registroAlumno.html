@@ -38,17 +38,17 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label>Matricula</label>
-                      <input type="text" name="matricula" id="matricula" class="form-control">
+                      <input type="text" name="matricula" id="matricula" class="form-control" required>
                       <label>Nombre</label>
-                      <input type="text" name="nombreA" id="nombreA" class="form-control">
+                      <input type="text" name="nombreA" id="nombreA" class="form-control" required>
                       <label>Segundo Nombre</label>
                       <input type="text" name="snombreA" id="snombreA" class="form-control">
                       <label>Apellido Paterno</label>
-                      <input type="text" name="apellidoPA" id="apellidoPA" class="form-control">
+                      <input type="text" name="apellidoPA" id="apellidoPA" class="form-control" required>
                       <label>Apellido Materno</label>
-                      <input type="text" name="apellidoMA" id="apellidoMA" class="form-control">
+                      <input type="text" name="apellidoMA" id="apellidoMA" class="form-control" required>
                       <label>Edad</label>
-                      <input type="number" name="edad" id="edad" class="form-control">
+                      <input type="number" name="edad" id="edad" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label> Especialidad</label>
@@ -58,11 +58,11 @@
                         {% endfor %}
                       </select>
                       <label> Inicio de Curso </label>
-                      <input type="date" name="inicioCurso" id="inicioCurso" class="form-control">
+                      <input type="date" name="inicioCurso" id="inicioCurso" class="form-control" required>
                       <label>Final de Curso</label>
-                      <input type="date" name="finalCurso" id="finalCurso" class="form-control">
+                      <input type="date" name="finalCurso" id="finalCurso" class="form-control" required>
                       <label> Convenio </label>
-                      <input type="text" name="convenio" id="convenio" class="form-control">
+                      <input type="text" name="convenio" id="convenio" class="form-control" required>
                       <label>Observaciones</label>
                       <input type="text" name="observaciones" id="observaciones" class="form-control">
                     </div>
@@ -77,21 +77,21 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label>Calle</label>
-                      <input type="text" name="calle" id="calle" class="form-control">
+                      <input type="text" name="calle" id="calle" class="form-control" required>
                       <label>Colonia</label>
-                      <input type="text" name="colonia" id="colonia" class="form-control">
+                      <input type="text" name="colonia" id="colonia" class="form-control" required>
                       <label>Codigo Postal</label>
-                      <input type="text" name="codigopostal" id="codigopostal" class="form-control">
+                      <input type="text" name="codigopostal" id="codigopostal" class="form-control" required>
                       <label>No. Interior</label>
-                      <input type="text" name="lote" id="lote" class="form-control">
+                      <input type="text" name="lote" id="lote" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label>No. Exterior</label>
-                      <input type="text" name="manzana" id="manzana" class="form-control">
+                      <input type="text" name="manzana" id="manzana" class="form-control" required>
                       <label>Delegación o Municipio</label>
-                      <input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control">
+                      <input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control" required>
                       <label>Ciudad o Estado</label>
-                      <select class="form-select" name="ciudadOestado" id="ciudadOestado">
+                      <select class="form-select" name="ciudadOestado" id="ciudadOestado" required>
                         {% for choice1 in form3.ciudadOestado %}
                           {{choice1}}
                         {% endfor %}
@@ -110,17 +110,17 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label>Nombre</label>
-                      <input type="text" name="nombreT" id="nombreT" class="form-control">
+                      <input type="text" name="nombreT" id="nombreT" class="form-control" required>
                       <label>Apellido Paterno</label>
-                      <input type="text" name="apellidoMT" id="apellidoPT" class="form-control">
+                      <input type="text" name="apellidoMT" id="apellidoPT" class="form-control" required>
                       <label>Apellido Materno</label>
-                      <input type="text" name="apellidoPT" id="apellidoMT" class="form-control">
+                      <input type="text" name="apellidoPT" id="apellidoMT" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Télefono</label>
-                      <input type="number" name="telefono" id="telefono" class="form-control">
+                      <input type="number" name="telefono" id="telefono" class="form-control" required>
                       <label>Padre o Tutor</label>
-                      <select class="form-select" name="padreT" id="padreT">
+                      <select class="form-select" name="padreT" id="padreT" required>
                        {% for choice2 in form2.padreT %}
                           {{choice2}}
                         {% endfor %}

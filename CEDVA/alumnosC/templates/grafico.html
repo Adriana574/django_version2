@@ -1,0 +1,67 @@
+{%extends 'headerAlumno.html'%}
+{% load static %}
+{%block content%}
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  
+</figure>
+
+<script type="text/javascript">
+Highcharts.chart('container', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Pagos Totales'
+  },
+  subtitle: {
+    text: 'Reporte de pagos totales de los alumnos'
+  },
+  xAxis: {
+    categories: [
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Nobiembre',
+      'Diciembre'
+    ],
+    crosshair: true
+  },
+  yAxis: {
+    title: {
+      useHTML: true,
+      text: 'Total de Alumnos'
+    }
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: 'Porcentaje',
+    showInLegend:false,
+    colorByPoint: true,
+    data:[[ {{report_year_month|safe}}]]
+  }]
+});
+</script>
+
+{%endblock%}

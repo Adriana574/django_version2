@@ -1,11 +1,14 @@
 {%extends 'headerAlumno.html'%}
 {%load static%}
 {%block content%}
- <div class="circle"></div>
-        <div class="circle-small"></div>
-        <div class="circle-big"></div>
-        <div class="circle-inner-inner"></div>
-        <div class="circle-inner"></div>
-    </body>
+ {% if user.is_authenticated %}
+ <form>
+ 	<label>hola apestosin </label>
+ </form>
+ {% else %}
+ <ul class="nav navbar-nav navbar-right">
+ 	<li><a href="index.html"></a></li>
+ </ul>
+ {% endif %}
 
 {%endblock%}

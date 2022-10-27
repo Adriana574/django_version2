@@ -3,19 +3,19 @@
 {% block content %}
 <div class="container">
 	<div class="alert alert-primary" role="alert">
-		<h2>Eliminar: {{ pagoelimina.folio }}</h2>
+		<h2>Eliminar: {{ object.folio }}</h2>
 	</div>
 </div>
 <div class="container">
 	<form method="POST">
 		<div class="alert alert-primary" role="alert">
 			{% csrf_token %} 
-			<p>¿Seguro que desea eliminar: <strong>{{ pagoelimina.folio }}</strong>?</p>
+			<p>¿Seguro que desea eliminar: <strong>{{ object.folio }}</strong>?</p>
 			<button type="submit" id="errorAlert" class="btn btn-danger">Borrar</button>
 		</div>
 	</form>
 	<p onclick="cancelarPago()">
-		<button onclick="location.href='/{{pagoelimina.pk}}/pagoalumno'" class="btn btn-secondary"> CANCELAR </button>
+		<button onclick="location.href='{{list_url}}'" class="btn btn-secondary"> CANCELAR </button>
 	</p>
 </div>
 

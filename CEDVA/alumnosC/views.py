@@ -15,8 +15,9 @@ from Pago.forms import *
 from alumnosC.forms import *
 from datetime import datetime
 from django.views.generic.base import TemplateView
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.db.models.functions import Coalesce
+
 
 def LoginUser2(request):
     if request.user.username=="":
@@ -27,37 +28,94 @@ def LoginUser2(request):
 @login_required(login_url="/loginuser2/")        
 def HomeAlumno(request):
 
-    return render(request, "inicioA.html")
-
-class grafico(TemplateView): 
-    template_name= "grafico.html"
-
-    def get_report_year_month(self):
-        labels=[]
-        data=[]
-
-        queryset = Alumno.objects.order.by('inicioCurso','finalCurso')[:5]
-        try:
-            for mes in queryset:
-                total = Pago.objects.filter(fechaPago__year=2022,fechaPago__month=10).aggregate(r=Coalesce(Sum('total'), 0)).get('r')
-                data.append(float(total))
-        except:
-            pass
-        return data
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        context['panel'] = 'Panel de administrador'
-        context['report_year_month'] = self.get_report_year_month()
-        return context
-
+    return render(request, "inicioA.html") 
 
 @login_required(login_url="/loginuser2/")
 def registroP(request):
     return render(request, "registroP.html")  
 
-@login_required(login_url="/loginuser2/")
-def Avance(request):
-    return render(request, "avanze.html")      
+
+class Avance(TemplateView):
+    template_name= "graficaAVANCE.html"
+    model=Alumno
+
+    def get_report(self, *args, **kwargs):
+        data = []
+        year=datetime.now().year
+        pk = self.kwargs.get('pk', 0)
+        alumno=self.model.objects.get(user=pk)
+
+        total1=Pago.objects.filter(alumno=alumno.id,fechaPago__year=year).count()
+        
+     
+
+        data = [total1]
+
+        return data
+
+    def get_reportaño1(self, *args, **kwargs):
+        data = []
+        year=datetime.now().year
+        pk = self.kwargs.get('pk', 0)
+        alumno=self.model.objects.get(user=pk)
+
+        total1=Pago.objects.filter(alumno=alumno.id,fechaPago__year=(year+1)).count()
+
+
+        data = [total1]
+
+        return data 
+
+    def get_reportaño2(self, *args, **kwargs):
+        data = []
+        year=datetime.now().year
+        pk = self.kwargs.get('pk', 0)
+        alumno=self.model.objects.get(user=pk)
+
+        total1=Pago.objects.filter(alumno=alumno.id,fechaPago__year=(year+2)).count()
+
+
+        data = [total1]
+
+        return data  
+
+    def get_pagos(self, *args, **kwargs):
+        pk = self.kwargs.get('pk', 0)
+        year=datetime.now().year
+        alumno=self.model.objects.get(user=pk)
+
+        total1=Pago.objects.filter(alumno=alumno.id,fechaPago__year=year)
+
+        return total1  
+
+    def get_pagosuno(self, *args, **kwargs):
+        pk = self.kwargs.get('pk', 0)
+        year=datetime.now().year
+        alumno=self.model.objects.get(user=pk)
+
+        total1=Pago.objects.filter(alumno=alumno.id,fechaPago__year=(year+1))
+
+        return total1 
+
+    def get_pagosdos(self, *args, **kwargs):
+        pk = self.kwargs.get('pk', 0)
+        year=datetime.now().year
+        alumno=self.model.objects.get(user=pk)
+
+        total1=Pago.objects.filter(alumno=alumno.id,fechaPago__year=(year+2))
+
+        return total1                    
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['PAGOS'] = self.get_pagos()
+        context['PAGOSuno'] = self.get_pagosuno()
+        context['PAGOSdos'] = self.get_pagosdos()
+        context['report_Alumno'] = self.get_report()
+        context['report_Alumno_años'] = self.get_reportaño1()
+        context['report_Alumno_añosdos'] = self.get_reportaño2()
+        return context
+      
 
 def LogoutUser2(request):
     logout(request)

@@ -56,6 +56,7 @@ class Eliminar(DeleteView):
         context = super().get_context_data(**kwargs)
         context['Tutor'] = Tutor.objects.get(pk=pk)
         context['Direccion'] = Direccion.objects.get(pk=pk)
+        context['Especialidad'] = Especialidad.objects.get(pk=pk)
         context['Alumno'] = Alumno.objects.get(pk=pk)
         return context 
 
@@ -104,6 +105,7 @@ class registrarAlumno(CreateView):
             registro.especialidad = form4.save()
             registro.user = form5.save()
             registro.save()
+            messages.success(request, 'Alumno registrado con éxito.')
             return HttpResponseRedirect(self.get_success_url())
 
         else:
@@ -163,6 +165,8 @@ class actualizarAlumnos(UpdateView):
             form3.save()
             form4.save()
             form5.save()
+
+            messages.success(request, 'Alumno modificado con éxito.')
 
             return HttpResponseRedirect(self.get_success_url())
         else:

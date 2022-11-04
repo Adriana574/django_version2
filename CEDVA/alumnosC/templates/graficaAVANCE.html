@@ -1,0 +1,309 @@
+{%extends 'headerAlumno.html'%}
+{%load static%}
+{%block content%}
+<figure class="highcharts-figure">
+
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <div id="container-speed" class="chart-container"></div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                VER PAGOS
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <table class="table table-striped"  align="center">
+                  <thead style="text-align: center;">
+                   <th class="table-dark">Folio del pago</th>
+                   <td class="table-dark">Monto</td>
+                   <td class="table-dark">fecha de pago</td>
+                   <td class="table-dark">Mes a pagar </td>
+                   <td class="table-dark">Status </td>
+
+                 </thead>
+                 <tbody>
+                   {% for context in PAGOS %}
+                   <tbody align="center">
+                    <tr>
+                      <td>{{context.folio}}</td>
+                      
+                      <td>{{context.monto}}</td>
+                      <td>{{context.fechaPago}}</td>
+                      <td>{{context.mesPagado}}</td>
+                      {% if context.Estado_pago == True %}
+                      <td><i class="fa-solid fa-circle-check" style="color: green;"></i></td>
+                      {%endif%}
+                      {% if context.Estado_pago == False %}
+                      <td><i class="fa-solid fa-circle-xmark" style="color: red;"></i></td>
+                      {%endif%}
+                    </tbody>
+                    {%endfor%}
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+
+        <div class="card-body">
+         <div id="container-rpm" class="chart-container"></div>
+
+         <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                VER PAGOS
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+               <table class="table table-striped"  align="center">
+                <thead style="text-align: center;">
+                  <th class="table-dark">Folio del pago</th>
+                  <td class="table-dark">Monto</td>
+                  <td class="table-dark">fecha de pago</td>
+                  <td class="table-dark">Mes a pagar </td>
+                  <td class="table-dark">Status </td>
+
+                </thead>
+                <tbody>
+                 {% for context in PAGOSuno %}
+                 <tbody align="center">
+                  <tr>
+                    <td>{{context.folio}}</td>
+                    
+                    <td>{{context.monto}}</td>
+                    <td>{{context.fechaPago}}</td>
+                    <td>{{context.mesPagado}}</td>
+                    {% if context.Estado_pago == True %}
+                    <td><i class="fa-solid fa-circle-check" style="color: green;"></i></td>
+                    {%endif%}
+                    {% if context.Estado_pago == False %}
+                    <td><i class="fa-solid fa-circle-xmark" style="color: red;"></i></td>
+                    {%endif%}
+                  </tbody>
+                  {%endfor%}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="card">
+
+      <div class="card-body">
+       <div id="container-rp" class="chart-container"></div>
+       <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingtree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              VER PAGOS
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingtree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <table class="table table-striped"   align="center">
+                <thead style="text-align: center;">
+                 <th class="table-dark">Folio del pago</th>
+                 <td class="table-dark">Monto</td>
+                 <td class="table-dark">fecha de pago</td>
+                 <td class="table-dark">Mes a pagar </td>
+                 <td class="table-dark">Status </td>
+
+               </thead>
+               <tbody>
+                 {% for context in PAGOSdos %}
+                 <tbody align="center">
+                  <tr>
+                    <td>{{context.folio}}</td>      
+                    <td>{{context.monto}}</td>
+                    <td>{{context.fechaPago}}</td>
+                    <td>{{context.mesPagado}}</td>
+                    {% if context.Estado_pago == True %}
+                    <td><i class="fa-solid fa-circle-check" style="color: green;"></i></td>
+                    {%endif%}
+                    {% if context.Estado_pago == False %}
+                    <td><i class="fa-solid fa-circle-xmark" style="color: red;"></i></td>
+                    {%endif%}
+                  </tbody>
+                  {%endfor%}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="container-rp" class="chart-container"></div>
+
+</figure>
+
+<script type="text/javascript">
+ var gaugeOptions = {
+  chart: {
+    type: 'solidgauge'
+  },
+
+  title: null,
+
+  pane: {
+    center: ['50%', '85%'],
+    size: '120%',
+    startAngle: -90,
+    endAngle: 90,
+    background: {
+      backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+      innerRadius: '40%',
+      outerRadius: '80%',
+      shape: 'arc'
+    }
+  },
+
+  exporting: {
+    enabled: false
+  },
+
+  tooltip: {
+    enabled: false
+  },
+
+  // the value axis
+  yAxis: {
+    stops: [
+      [0.1, '#55BF3B'], // green
+      [0.5, '#DDDF0D'], // yellow
+      [0.9, '#DF5353'] // red
+      ],
+      lineWidth: 0,
+      tickWidth: 0,
+      minorTickInterval: null,
+      tickAmount: 2,
+      title: {
+        y: -150
+      },
+      labels: {
+        y: 16
+      }
+    },
+
+    plotOptions: {
+      solidgauge: {
+        dataLabels: {
+          y: 3,
+          borderWidth: 0,
+          useHTML: true
+        }
+      }
+    }
+  };
+
+// The speed gauge
+var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+  yAxis: {
+    min: 0,
+    max: 12,
+    title: {
+      text: 'Primer año'
+    }
+  },
+
+  credits: {
+    enabled: false
+  },
+
+  series: [{
+    name: 'Primer año',
+    data: {{report_Alumno|safe}},
+    dataLabels: {
+      format:
+      '<div style="text-align:center">' +
+      '<span style="font-size:25px">{y:.1f}</span><br/>' +
+      '<span style="font-size:12px;opacity:0.4">' +
+      'Pagos realizados' +
+      '</div>'
+    },
+    tooltip: {
+      valueSuffix: 'Primer Avance'
+    }
+  }]
+
+}));
+
+// The RPM gauge
+var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+  yAxis: {
+    min: 0,
+    max: 12,
+    title: {
+      text: 'Seguando año'
+    }
+  },
+
+  series: [{
+    name: 'Seguando año',
+    data: {{report_Alumno_años|safe}},
+    dataLabels: {
+      format:
+      '<div style="text-align:center">' +
+      '<span style="font-size:25px">{y:.1f}</span><br/>' +
+      '<span style="font-size:12px;opacity:0.4">' +
+      'Segundo Avance' +
+      '</span>' +
+      '</div>'
+    },
+    tooltip: {
+      valueSuffix: ' Segundo Avance'
+    }
+  }]
+
+
+}));
+
+
+var chartRp = Highcharts.chart('container-rp', Highcharts.merge(gaugeOptions, {
+  yAxis: {
+    min: 0,
+    max: 12,
+    title: {
+      text: 'Tercer año'
+    }
+  },
+
+  series: [{
+    name: 'Tercer año',
+    data: {{report_Alumno_añosdos|safe}},
+    dataLabels: {
+      format:
+      '<div style="text-align:center">' +
+      '<span style="font-size:25px">{y:.1f}</span><br/>' +
+      '<span style="font-size:12px;opacity:0.4">' +
+      'Tercer Avance' +
+      '</span>' +
+      '</div>'
+    },
+    tooltip: {
+      valueSuffix: ' Tercer Avance'
+    }
+  }]
+
+
+}));
+
+
+</script>
+
+{%endblock%}

@@ -12,6 +12,7 @@ from . models import *
 from django.contrib.admin.views.decorators import staff_member_required
 
 
+
 def LoginUser(request):
     if request.user.username=="":
         return render(request,"index.html")
@@ -46,3 +47,4 @@ def LogoutUser(request):
     return HttpResponseRedirect("/loginuser")            
 
 #@login_required(login_url="/loginuser/")
+#/////////////////////////////////////////////////////////////// 

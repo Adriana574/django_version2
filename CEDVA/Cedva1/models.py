@@ -3,6 +3,8 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from AlumnosAdmin.choices import *
 
+from datetime import datetime
+
 
 class Tutor(models.Model):
 	nombreT=models.CharField(max_length=100)
@@ -88,8 +90,9 @@ class Alumno(models.Model):
 	tutor = models.ForeignKey(Tutor, related_name="subcategories3",blank=True , null= True, on_delete=models.CASCADE )
 	user = models.ForeignKey(User, blank=True , null= True, on_delete=models.CASCADE )
 	matricula = models.CharField(max_length=100,blank=True)
+	activo_por_pagos = models.BooleanField(('active'), default=True,blank=True , null=True)
 	nombreA = models.CharField(max_length=100)
-	snombreA = models.CharField(max_length=100)
+	snombreA = models.CharField(max_length=100, blank=True , null= True)
 	apellidoPA = models.CharField(max_length=100)
 	apellidoMA = models.CharField(max_length=100)
 	edad = models.IntegerField()
@@ -111,6 +114,7 @@ class Alumno(models.Model):
 class Pago(models.Model):
 	alumno = models.ForeignKey(Alumno, related_name="subcategories7",blank=True , null= True, on_delete=models.CASCADE)
 	folio=models.IntegerField()
+	Estado_pago = models.BooleanField(('revicion'),default=False, blank=True , null= True)
 	tipoPago=models.CharField(max_length=100)
 	monto=models.IntegerField()
 	fechaPago=models.DateField()

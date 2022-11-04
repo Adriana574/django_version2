@@ -26,22 +26,24 @@
               <!-- Submit button -->
               <div align="center">
                <button type="submit" class="btn btn-dark">Login</button>
-                {% for message in messages %}
-                          {% if message.tags == 'error' %}
-                            {{ message }}
-                            {% endif %}
-                           {% endfor %}
-              </div>
+               {% for message in messages %}
+               {% if message.tags == 'error' %}
+               {{ message }}
+               {% endif %}
+               {% endfor %}
+              
+              </p>
+            </div>
 
-            </form>
-          </div>
+          </form>
         </div>
       </div>
+    </div>
 
-    </section>
-  </div>
+  </section>
+</div>
 
-  {% include "footer.html" %}
+{% include "footer.html" %}
 
 </body>
 </html>

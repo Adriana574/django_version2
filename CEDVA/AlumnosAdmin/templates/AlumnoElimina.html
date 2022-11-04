@@ -1,33 +1,27 @@
 {%extends 'director/base.html'%}
 {% load static %}
 {% block content %}
+<br><br>
 <div class="container">
-	<div class="alert alert-primary" role="alert">
-		<h2>Eliminar: {{ object.nombreA }}</h2>
-	</div>
-</div>
-<div class="container">
-	<form method="POST">
-		<div class="alert alert-primary" role="alert">
-			{% csrf_token %} 
-			<p>¿Seguro que desea eliminar: <strong>{{ object.nombreA }}</strong>?</p>
-			<button onclick="elimina()" id="errorAlert" class="btn btn-danger">Borrar</button>
-		</div>
-	</form>
-	<p onclick="cancelar()">
-		<button onclick="location.href='/alumnos'" class="btn btn-secondary"> CANCELAR </button>
-	</p>
-</div>
+	<div class="shadow-lg p-3 mb-5 bg-body rounded">
+		<div class="card text-center">
+			<div class="card-header">
+				<h4>Eliminar Alumno: Matricula {{ object.matricula }}</h4>
+			</div>
+			<div class="card-body">
+				<form method="POST">
+					<div role="alert">
+						{% csrf_token %} 
+						<p>¿Seguro que desea eliminar: <strong>{{ object.nombreA }} {{ object.apellidoPA }} {{ object.apellidoMA }}</strong>?</p>
 
-<script type="text/javascript">
-	function cancelar(){
-		Swal.fire({
-			position: 'center',
-			icon: 'error',
-			title: 'Cancelado',
-			showConfirmButton: false,
-			timer: 1500
-		})
-	}
-</script>
+						<button id="errorAlert" class="btn btn-danger">Borrar</button>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer text-muted">
+				<button onclick="location.href='/alumnos'" class="btn btn-secondary"> CANCELAR </button>
+			</div>
+		</div>
+	</div>
+</div> 
 {% endblock %}

@@ -38,9 +38,10 @@
 				<th scope="col" style="text-align: center;">Tipo de Pago</th>
 				<th scope="col" style="text-align: center;">Monto</th>
 				<th scope="col" style="text-align: center;">Fecha de pago</th>
+				<th scope="col" style="text-align: center;">Status de pago</th>
 				<th scope="col" style="text-align: center;">Mes pagado</th>
 				<th scope="col" style="text-align: center;">Hora pagado</th>
-				<th scope="col" style="text-align: center;">Editar</th>
+				<th scope="col" style="text-align: center;">Editar/Validar</th>
 				<th scope="col" style="text-align: center;">Eliminar</th>
 			</tr>
 		</thead>
@@ -52,6 +53,12 @@
 				<td>{{context.tipoPago}}</td>
 				<td>{{context.monto}}</td>
 				<td>{{context.fechaPago}}</td>
+				{% if context.Estado_pago == True %}
+				<td><i class="fa-solid fa-circle-check" style="color: green;"></i></td>
+				{%endif%}
+				{% if context.Estado_pago == False %}
+				<td><i class="fa-solid fa-circle-xmark" style="color: red;"></i></td>
+				{%endif%}
 				<td>{{context.mesPagado}}</td>
 				<td>{{context.horapago}}</td>
 

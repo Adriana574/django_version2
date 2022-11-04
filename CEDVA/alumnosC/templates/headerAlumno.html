@@ -12,6 +12,7 @@
 	<meta charset="utf-8">
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/export-data.js"></script>
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
@@ -36,11 +37,11 @@
 					</li>
 					<li class="nav-item dropdown">
 						<li>
-							<a class="nav-link active" aria-current="page" href="/grafico">Avance de pagos</a>
+							<a class="nav-link active" aria-current="page" href="/{{user.id}}/avance">Avance de pagos</a>
 						</li>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link active" aria-current="page" href="{{user.id}}/alumnos2">Datos personales</a>
+						<a class="nav-link active" aria-current="page" href="/{{user.id}}/alumnos2">Datos personales</a>
 					</li>
 					<li class="nav-item dropdown">
 						{% if user.is_authenticated %}

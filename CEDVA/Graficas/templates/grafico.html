@@ -1,0 +1,170 @@
+{%extends 'director/base.html'%}
+{% load static %}
+{% block content %}
+
+
+<figure class="highcharts-figure" >
+ <br>
+  <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+
+  <div class="card-header">
+    <h4 align="center"> Pagos totales</h4>
+  </div>
+  <div> <label>Eliga el año que desea ver</label> 
+    <input type="number" min="1900" max="2099" step="1" value="2016" /></div>
+  <div class="card-body">
+    
+    <div id="container"></div>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+
+</div>
+  
+ 
+</figure>
+
+
+
+
+<script type="text/javascript">
+/*Highcharts.chart('container', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: ''
+  },
+  subtitle: {
+    text: 'Reporte de pagos totales de los alumnos'
+  },
+  xAxis: {
+    categories: [
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Nobiembre',
+      'Diciembre'
+    ],
+    crosshair: true
+  },
+  yAxis: {
+    title: {
+      useHTML: true,
+      text: 'Total de Alumnos'
+    }
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: 'Porcentaje',
+    showInLegend:false,
+    colorByPoint: true,
+    data: {{ report_year_month | safe }}
+  }]
+});*/
+</script>
+
+
+<script type="text/javascript">
+  Highcharts.chart('container', {
+  title: {
+    text: '',
+    align: 'left'
+  },
+  xAxis: {
+    categories: ['Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Nobiembre',
+      'Diciembre']
+  },
+  yAxis: {
+    title: {
+      text: 'Total de Alumnos'
+    }
+  },
+  labels: {
+    items: [{
+      html: 'Alumnos con Convenio y sin Convenio',
+      style: {
+        left: '50px',
+        top: '18px',
+        color: ( // theme
+          Highcharts.defaultOptions.title.style &&
+          Highcharts.defaultOptions.title.style.color
+        ) || 'black'
+      }
+    }]
+  },
+  series: [{
+    type: 'column',
+    showInLegend:false,
+    colorByPoint: true,
+    data: {{ report_year_month | safe }}
+  }, {
+    type: 'spline',
+    showInLegend:false,
+    colorByPoint: true,
+    data: {{ report_year_month | safe }},
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Liter',
+    data: 
+    [{
+      name: 'Alumnos con Convenio',
+      y:{{reportConConvenio | safe }},
+      color: Highcharts.getOptions().colors[0] // 2020 color
+    }, 
+    {
+      name: 'Alumnos sin Convenio',
+      y:{{ reportSinConvenio | safe }},
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, 
+    {
+      name: '2022',
+      y: 0,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [80, 70],
+    size: 100,
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
+</script>
+
+{%endblock%}

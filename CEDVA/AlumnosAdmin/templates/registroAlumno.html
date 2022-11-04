@@ -20,7 +20,7 @@
                 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Tutor</button>
               </div>
             </nav>
-            <form method="POST" enctype="multipart/form-data" action="">
+            <form method="POST" enctype="multipart/form-data" action="" id="formRegistroAlumno"  novalidate>
               <div class="tab-content" id="nav-tabContent">
                 {% csrf_token %}
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -30,7 +30,7 @@
                     </div>
                     <div align="center">
                       <br>
-                      <button type="button" name="next" id="next" class="next action-button btn-primary" aria-controls="nav-profile-tab">Next </button> 
+                      <button type="button" name="next" id="next" class="next action-button btn-primary" aria-controls="nav-profile-tab">Siguiente </button> 
                     </div>
                   </div>
                 </div>
@@ -52,9 +52,9 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label> Especialidad</label>
-                      <select class="form-select" name="nombreE" id="nombreE">
+                      <select class="form-select" name="nombreE" id="nombreE" required>
                         {% for choice in form4.nombreE %}
-                          {{choice}}
+                        {{choice}}
                         {% endfor %}
                       </select>
                       <label> Inicio de Curso </label>
@@ -68,8 +68,8 @@
                     </div>
                     <div align="center">
                       <br>
-                      <button type="button" name="previous" id="previous" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Previous</button> 
-                      <button type="button" name="next1" id="next1" class="next action-button btn-primary" aria-controls="nav-profileD-tab">Next</button> 
+                      <button type="button" name="previous" id="previous" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Anterior</button> 
+                      <button type="button" name="next1" id="next1" class="next action-button btn-primary" aria-controls="nav-profileD-tab">Siguiente</button> 
                     </div>
                   </div>
                 </div>
@@ -81,19 +81,19 @@
                       <label>Colonia</label>
                       <input type="text" name="colonia" id="colonia" class="form-control" required>
                       <label>Codigo Postal</label>
-                      <input type="text" name="codigopostal" id="codigopostal" class="form-control" required>
+                      <input type="text" name="codigopostal" id="codigopostal" class="form-control">
                       <label>No. Interior</label>
-                      <input type="text" name="lote" id="lote" class="form-control" required>
+                      <input type="text" name="lote" id="lote" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
                       <label>No. Exterior</label>
-                      <input type="text" name="manzana" id="manzana" class="form-control" required>
+                      <input type="text" name="manzana" id="manzana" class="form-control">
                       <label>Delegación o Municipio</label>
                       <input type="text" name="delegacionMunicipio" id="delegacionMunicipio" class="form-control" required>
                       <label>Ciudad o Estado</label>
                       <select class="form-select" name="ciudadOestado" id="ciudadOestado" required>
                         {% for choice1 in form3.ciudadOestado %}
-                          {{choice1}}
+                        {{choice1}}
                         {% endfor %}
                       </select>
                     </div>
@@ -101,8 +101,8 @@
                     <br>
                     <div align="center">
                       <br>
-                      <button type="button" name="previous1" id="previous1" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button> 
-                      <button type="button" name="next2" id="next2" class="next action-button btn-primary" aria-controls="nav-contact-tab">Next</button>
+                      <button type="button" name="previous1" id="previous1" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Anterior</button> 
+                      <button type="button" name="next2" id="next2" class="next action-button btn-primary" aria-controls="nav-contact-tab">Siguiente</button>
                     </div>
                   </div>
                 </div>
@@ -122,26 +122,26 @@
                       <label>Padre o Tutor</label>
                       <select class="form-select" name="padreT" id="padreT" required>
                        {% for choice2 in form2.padreT %}
-                          {{choice2}}
-                        {% endfor %}
-                      </select>
-                    </div>
+                       {{choice2}}
+                       {% endfor %}
+                     </select>
+                   </div>
+                   <br>
+                   <br>
+                   <div align="center">
                     <br>
-                    <br>
-                    <div align="center">
-                      <br>
-                      <button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Previous</button> 
-                      <button type="submit" name="submit" id="submit" class="submit action-button btn-success">Guardar</button> 
-                    </div>
+                    <button type="button" name="previous2" id="previous2" class="previous action-button btn-secondary" aria-controls="nav-profileD-tab">Anterior</button> 
+                    <button type="submit" name="submit" id="submit" class="submit action-button btn-success">Guardar</button> 
                   </div>
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -238,10 +238,36 @@
   }, false);
 </script>
 
-<script type="text/javascript">
 
-</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+<script src="{% static 'js/validarAlumno.js' %}"></script>
 
+
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+
+        Swal.fire({
+          title: "Registro",
+          text: "{{ message }}",
+          icon: 'success',
+          width: 600,
+          padding: '3em',
+          color: '#000',
+          background: '#fff success',
+          backdrop: `
+          rgba(234, 236, 238, 0.4)
+          url("static/img/engra.gif")
+          left top
+          no-repeat
+          `
+        });
+      </script>
+
+
+    {% endfor %}
+  {% endif %}
 {%endblock%}
 
 

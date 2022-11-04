@@ -21,6 +21,7 @@
 							<th scope="col" style="text-align: center;">Apellido Paterno</th>
 							<th scope="col" style="text-align: center;">Apellido Materno</th>
 							<th scope="col" style="text-align: center;">Observaciones del alumno</th>
+							<th scope="col" style="text-align: center;">Status del Alumno</th>
 							<th scope="col" style="text-align: center;">Ver</th>
 							<th scope="col" style="text-align: center;">Editar</th>
 							<th scope="col" style="text-align: center;">Eliminar</th>
@@ -34,16 +35,40 @@
 							<td>{{i.apellidoPA}}</td>
 							<td>{{i.apellidoMA}}</td>
 							<td>{{i.observaciones}}</td>
+							{% if i.activo_por_pagos == True %}
+							<td><i class="fa-solid fa-circle-check" style="color: green;"></i></td>
+							{%endif%}
+							{% if i.activo_por_pagos == False %}
+							<td><i class="fa-solid fa-circle-xmark" style="color: red;"></i></td>
+							{%endif%}
 							<td><button type="button" class="btn btn-primary" ><a href="{{i.pk}}/ver"><i class="fa-solid fa-eye" style="color: white;"></i></a></button></td>
 							<td><button type="button" class="btn btn-warning"><a href="{{i.pk}}/update" style="color: black;"><i class="fa-solid fa-user-pen"></i></a></button></td>
 							<td><button type="button" class="btn btn-danger" style="background-color: red;" ><a href="{{i.pk}}/delete" style="color: white;"><i class="fa-solid fa-user-xmark"></i></a></button></td>
 						</tr>
-					{%endfor%}
+						{%endfor%}
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+
+{% if messages %}
+    {% for mess in messages %}
+    	<script type="text/javascript">
+		Swal.fire({
+			icon: 'success',
+			title: '{{mess}}',
+			showConfirmButton: false,
+			timer: 1500
+		})
+
+		</script>
+
+    {% endfor %}
+{% endif %}
+
 {%endblock%}
 

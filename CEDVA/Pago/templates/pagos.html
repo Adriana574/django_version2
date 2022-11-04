@@ -12,10 +12,10 @@
 		<thead class="table-dark">
 			<tr>
 				<th scope="col" style="text-align: center;">Id</th>
-				<th scope="col" style="text-align: center;">Nombre</th>
-				<th scope="col" style="text-align: center;">Apellido Paterno</th>
-				<th scope="col" style="text-align: center;">Apellido Materno</th>
+				<th scope="col" style="text-align: center;">Nombre Completo</th>
+				<th scope="col" style="text-align: center;">Matricula</th>
 				<th scope="col" style="text-align: center;">Status</th>
+				<th scope="col" style="text-align: center;">observaciones</th>
 				<th scope="col" style="text-align: center;">Ver</th>
 			</tr>
 		</thead>
@@ -23,9 +23,9 @@
 			{% for i in listas %}
 			<tr align="center">
 				<td>{{i.id}}</td>
-				<td>{{i.nombreA}}</td>
-				<td>{{i.apellidoPA}}</td>
-				<td>{{i.apellidoMA}}</td>
+				<td>{{i.nombreA}} {{i.snombreA}} {{i.apellidoPA}} {{i.apellidoMA}}</td>
+				<td>{{i.matricula}}</td>
+				<td>{{i.activo_por_pagos}}</td>
 				<td>{{i.observaciones}}</td>
 				<td><button type="button" class="btn btn-primary" ><a href="{{i.pk}}/pagoalumno"><i class="fa-solid fa-eye" style="color: white;"></i></a></button></td>
 			</tr>

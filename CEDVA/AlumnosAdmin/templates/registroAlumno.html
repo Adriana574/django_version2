@@ -62,7 +62,11 @@
                       <label>Final de Curso</label>
                       <input type="date" name="finalCurso" id="finalCurso" class="form-control" required>
                       <label> Convenio </label>
-                      <input type="text" name="convenio" id="convenio" class="form-control" required>
+                      <select class="form-select" name="convenio" id="convenio" required>
+                        {% for choices3 in form.convenio %}
+                          {{choices3}}
+                        {% endfor %}
+                      </select>
                       <label>Observaciones</label>
                       <input type="text" name="observaciones" id="observaciones" class="form-control">
                     </div>
@@ -244,30 +248,30 @@
 <script src="{% static 'js/validarAlumno.js' %}"></script>
 
 
-  {% if messages %}
-    {% for message in messages %}
-      <script>
+{% if messages %}
+{% for message in messages %}
+<script>
 
-        Swal.fire({
-          title: "Registro",
-          text: "{{ message }}",
-          icon: 'success',
-          width: 600,
-          padding: '3em',
-          color: '#000',
-          background: '#fff success',
-          backdrop: `
-          rgba(234, 236, 238, 0.4)
-          url("static/img/engra.gif")
-          left top
-          no-repeat
-          `
-        });
-      </script>
+  Swal.fire({
+    title: "Registro",
+    text: "{{ message }}",
+    icon: 'success',
+    width: 600,
+    padding: '3em',
+    color: '#000',
+    background: '#fff success',
+    backdrop: `
+    rgba(234, 236, 238, 0.4)
+    url("static/img/engra.gif")
+    left top
+    no-repeat
+    `
+  });
+</script>
 
 
-    {% endfor %}
-  {% endif %}
+{% endfor %}
+{% endif %}
 {%endblock%}
 
 

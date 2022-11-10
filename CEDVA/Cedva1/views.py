@@ -10,9 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from . models import * 
 from django.contrib.admin.views.decorators import staff_member_required
-
-
-
+ 
 def LoginUser(request):
     if request.user.username=="":
         return render(request,"index.html")
@@ -22,6 +20,7 @@ def LoginUser(request):
 @staff_member_required(login_url="/loginuser/") 
 def HomePage(request):
     return render(request, "director/inicio.html") 
+
 def clicklogin(request):
     if request.method!="POST":
         return HttpResponse("<h1> Methoid not allowed<h1>")
@@ -35,16 +34,13 @@ def clicklogin(request):
             if request.user.is_staff:
                 return HttpResponseRedirect('/homepage')
             else:      
-                return HttpResponseRedirect('1inicio')  
+                return HttpResponseRedirect('/1inicio')  
         else:
-            messages.error(request, "Invalid Login")
+            messages.error(request, "Usuario invalido verifique los datos")
             return HttpResponseRedirect('/')
         
 
 def LogoutUser(request):
     logout(request)
     request.user=None
-    return HttpResponseRedirect("/loginuser")            
-
-#@login_required(login_url="/loginuser/")
-#/////////////////////////////////////////////////////////////// 
+    return HttpResponseRedirect("/loginuser")       

@@ -96,10 +96,11 @@ class Alumno(models.Model):
 	apellidoPA = models.CharField(max_length=100)
 	apellidoMA = models.CharField(max_length=100)
 	edad = models.IntegerField()
-	convenio = models.CharField(max_length=800)
+	convenio = models.CharField(max_length=800, choices=convenio, default='p')
 	inicioCurso = models.DateField()
 	finalCurso = models.DateField()
 	observaciones = models.CharField(max_length=1000)
+	certificado = models.BooleanField(('Certificado'), default=False)
 	created=models.DateTimeField(auto_now_add=True)
 	update=models.DateTimeField(auto_now_add=True)
 
@@ -108,17 +109,19 @@ class Alumno(models.Model):
 		verbose_name_plural = "alumnos"
 
 	def __str__(self):
-		return self.matricula + '- by' + self.especialidad.nombreE + '- by' + self.direccion.calle + '- by' + self.tutor.nombreT
+		return self.matricula +': '+self.nombreA+' '+self.apellidoPA +' ' +self.apellidoMA + ' : ' + self.especialidad.nombreE
 								
 
 class Pago(models.Model):
 	alumno = models.ForeignKey(Alumno, related_name="subcategories7",blank=True , null= True, on_delete=models.CASCADE)
+	PagoRegistrado=models.CharField(max_length=120,blank=True , null= True)
 	folio=models.IntegerField()
 	Estado_pago = models.BooleanField(('revicion'),default=False, blank=True , null= True)
 	tipoPago=models.CharField(max_length=100)
 	monto=models.IntegerField()
+	Findepagos = models.BooleanField(('Concluido'), default=False)
 	fechaPago=models.DateField()
-	mesPagado=models.CharField(max_length=12)
+	mesPagado=models.CharField(max_length=12,blank=True , null= True)
 	horapago=models.TimeField()
 	created=models.DateTimeField(auto_now_add=True)
 	update=models.DateTimeField(auto_now_add=True) 

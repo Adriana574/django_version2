@@ -20,3 +20,11 @@ padretutores = (
 		('Madre', 'Madre'),
 		('Tutor', 'Tutor')
 	)
+
+
+convenio = (
+		('p', 'Seleccione opción'),
+		('SI','Si'),
+		('NO','No')
+)
+

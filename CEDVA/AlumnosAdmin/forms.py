@@ -30,6 +30,17 @@ class FormularioUsuario(UserCreationForm):
                 'username': 'Nombre de usuario',
                 'email': 'Correo del alumno',
         } 
+        widgets = {
+                'username': forms.TextInput(attrs={
+                'placeholder': 'Nombre de usuario',
+                'autofocus': 'autofocus',
+                'class': 'form-control ', }),
+                'email': forms.TextInput(attrs={
+                'placeholder': 'Correo del alumno',
+                'autofocus': 'autofocus',
+                'class': 'form-control ', }),
+        }
+
 
 class FormularioAlumno(ModelForm):
     class Meta:

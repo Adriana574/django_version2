@@ -7,7 +7,7 @@
 	<br>
 	<div class="card">
 		<div class="card-header" style="text-align: left;">
-			Pagos por Periodo
+			Registrar pagos del Alumno
 		</div>
 		<div class="shadow-lg p-3 mb-5 bg-body rounded">
 			<div class="card-body">
@@ -37,25 +37,4 @@
 		</form>   
 	</div>
 </div>
-
-
-	{% if menssages %}
-	    {% for mensaje in mensaje %}
-    	  <script>
-
-        	Swal.fire({
-	          title: "Registro",
-	          text: "{{ messag }}",
-	          icon: 'success',
-	          width: 600,
-	          padding: '3em',
-	          color: '#000',
-	          background: '#fff success',
-        	});
-      	</script>
-
-
-        {% endfor %}
-    {% endif %}
 {%endblock%}
-

@@ -1,0 +1,38 @@
+{%extends 'director/base.html'%}
+{% load static %}
+{%block content%}
+<br>
+<br>
+<div class="container" align="center">
+	<br>
+	<div class="card">
+		<div class="card-header" style="text-align: left;">
+			Registrar pagos del Alumno
+		</div>
+		<div class="shadow-lg p-3 mb-5 bg-body rounded">
+			<div class="card-body">
+				<form method="POST" action="" enctype="multipart/form-data">
+					<div class="form-group col-md-6">
+						{% csrf_token %}
+						<label>Folio</label>
+						<input type="text" name="folio" id="folio" class="form-control">
+						<label>Tipo de Pago</label>
+						<input type="text" name="tipoPago" id="tipoPago" class="form-control">
+						<label>Monto</label>
+						<input type="text" name="monto" id="monto" class="form-control">
+						<label>Fecha de Pago</label>
+						<input type="date" name="fechaPago" id="fechaPago" class="form-control">
+						<label>Hora del Pago</label>
+						<input type="time" name="horapago" id="horapago" class="form-control">
+					</div>
+					<div align="center">
+						<br>
+						<button type="button" onclick="location.href='pagoalumno'" class="previous action-button btn-secondary" aria-controls="nav-home-tab" >Cancelar</button> 
+						<button type="submit" name="submit" id="submit" class="submit action-button btn-primary" aria-controls="nav-profileD-tab">Aceptar</button> 
+					</div>
+				</div>
+			</div>
+		</form>   
+	</div>
+</div>
+{%endblock%}

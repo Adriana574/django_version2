@@ -27,8 +27,8 @@ def LoginUser2(request):
 
 @login_required(login_url="/loginuser2/")        
 def HomeAlumno(request):
-
-    return render(request, "inicioA.html") 
+    model=Alumno
+    return render(request, "inicioA.html",{'model':model}) 
 
 @login_required(login_url="/loginuser2/")
 def registroP(request):
@@ -137,26 +137,28 @@ class AlumnoDatosListView(TemplateView):
         context['Alumno'] = Alumno.objects.get(pk=alumno.id)
         return context 
 
-
+class registroP(CreateView):
+    model = Pago
+    template_name = 'registroP.html'
+    second_model = Alumno
+    form_class =  registroalumnoPag
+    success_url = reverse_lazy('registroPago')
  
-def registroP(request):
-    PAgoAForm = registroalumnoPag(request.POST or None)
-    if PAgoAForm.is_valid():
-        form_data = PAgoAForm.cleaned_data 
-        folio= form_data.get("folio")
-        alumno=form_data.get("alumno") 
-        tipoPago=form_data.get("tipoPago")
-        monto = form_data.get("monto")
-        fechaPago = form_data.get("fechaPago")
-        mesPagado = form_data.get("mesPagado")
-        horapago = form_data.get("horapago")
+    def get_context_data(self, **kwargs):
+        context=super(registroP, self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form']=self.form_class(self.request.GET)
+            return context 
 
-        obj4 = Pago.objects.create(alumno=alumno, folio=folio, tipoPago=tipoPago, monto = monto, fechaPago=fechaPago, mesPagado=mesPagado,horapago=horapago)
-
-    
-    context = {
-        'PAgoAForm': PAgoAForm
-    }
-        
-    return render(request, "registroP.html", context) 
-         
+    def post(self, request, pk, *args, **kwargs):
+        self.object=self.get_object
+        user=self.kwargs.get('pk')
+        alumnoid=Alumno.objects.filter(user_id=user).only('id')
+        form=self.form_class(request.POST) 
+        if form.is_valid():
+            registroalumnoPag = form.save(commit=False) 
+            registroalumnoPag.alumno_id = alumnoid
+            registroalumnoPag.save()
+            return render(request,'registroP.html', {'registroalumnoPag' : registroalumnoPag})
+        else:
+            return self.render_to_response(self.get_context_data(form=form)) 

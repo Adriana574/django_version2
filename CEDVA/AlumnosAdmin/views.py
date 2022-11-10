@@ -39,11 +39,11 @@ class ver(TemplateView):
         return context 
 
 
-#@login_required(login_url="/loginuser/") 
-class AlumnoListView(ListView):
-    model = Alumno
-    template_name='alumnos.html'
-    context_object_name='listas'
+#@login_required(login_url="/loginuser/")    
+def AlumnoListView(request):
+    model2=Alumno.objects.filter(activo_por_pagos=True,certificado=False)
+    model =Alumno.objects.filter(activo_por_pagos=True,certificado=True)
+    return render(request,'alumnos.html',{'listas':model,'model2':model2}) 
 
     
 class Eliminar(DeleteView):

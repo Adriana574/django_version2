@@ -5,23 +5,30 @@
 
 <figure class="highcharts-figure" >
  <br>
-  <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+ <div class="card shadow-lg p-3 mb-5 bg-body rounded">
 
   <div class="card-header">
     <h4 align="center"> Pagos totales</h4>
   </div>
-  <div> <label>Eliga el año que desea ver</label> 
-    <input type="number" min="1900" max="2099" step="1" value="2016" /></div>
-  <div class="card-body">
-    
-    <div id="container"></div>
+  <div> 
+    <form  method = "POST"> 
+      {% csrf_token %}     
+      <label for="your_name">ingrese el año a buscar: </label> 
+      <input id="your_name" type="number" min="1900" max="2099" step="1" value="{{buscaraño|safe}}" name="your_name"> 
+      <button><a class="dropdown-item" href="/{{buscaraño|safe}}/grafico">Pagos totales</a></button>
+    </form> 
   </div>
-  <div class="card-footer text-muted">
-  </div>
+</form>
+<div class="card-body">
+
+  <div id="container"></div>
+</div>
+<div class="card-footer text-muted">
+</div>
 
 </div>
-  
- 
+
+
 </figure>
 
 
@@ -87,12 +94,12 @@
 
 <script type="text/javascript">
   Highcharts.chart('container', {
-  title: {
-    text: '',
-    align: 'left'
-  },
-  xAxis: {
-    categories: ['Enero',
+    title: {
+      text: '',
+      align: 'left'
+    },
+    xAxis: {
+      categories: ['Enero',
       'Febrero',
       'Marzo',
       'Abril',
@@ -104,28 +111,28 @@
       'Octubre',
       'Nobiembre',
       'Diciembre']
-  },
-  yAxis: {
-    title: {
-      text: 'Total de Alumnos'
-    }
-  },
-  labels: {
-    items: [{
-      html: 'Alumnos con Convenio y sin Convenio',
-      style: {
-        left: '50px',
-        top: '18px',
+    },
+    yAxis: {
+      title: {
+        text: 'Total de Alumnos'
+      }
+    },
+    labels: {
+      items: [{
+        html: 'Alumnos con Convenio y sin Convenio',
+        style: {
+          left: '50px',
+          top: '18px',
         color: ( // theme
           Highcharts.defaultOptions.title.style &&
           Highcharts.defaultOptions.title.style.color
-        ) || 'black'
+          ) || 'black'
       }
     }]
   },
   series: [{
     type: 'column',
-    showInLegend:false,
+    showInLegend:true,
     colorByPoint: true,
     data: {{ report_year_month | safe }}
   }, {
@@ -138,7 +145,17 @@
       lineColor: Highcharts.getOptions().colors[3],
       fillColor: 'white'
     }
-  }, {
+  },
+
+
+
+
+
+
+
+
+
+   {
     type: 'pie',
     name: 'Liter',
     data: 

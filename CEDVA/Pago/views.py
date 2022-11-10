@@ -200,11 +200,11 @@ def alumnoConPagosPendientes(request):
     totalc=Pago.objects.filter(fechaPago__year=year, fechaPago__month=month).exclude(Estado_pago=True)
     return render(request,'pagosPendientes.html',{'alumno':totalc})     
 
-def alumnoConPagosRetraso(request):
+def alumnoConPagosnoRealizo(request):
     noPagado=Alumno.objects.raw('''SELECT C.id, C.matricula, C.nombreA, C.apellidoPA, C.apellidoMA
                                  FROM 'Cedva1_alumno' AS C LEFT JOIN 'Cedva1_pago' AS P ON(C.id = P.alumno_id)
                                  WHERE C.id AND P.id IS NULL;''')
-    return render(request,'pagosCONretrazo.html',{'noPagado':noPagado})  
+    return render(request,'pagonoRealizado.html',{'noPagado':noPagado})  
 
 @staff_member_required(login_url="/loginuser/") 
 def pagoalumno(request):

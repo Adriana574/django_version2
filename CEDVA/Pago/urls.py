@@ -5,7 +5,7 @@ urlpatterns = [
 
 path('pagos', views.AlumnoPListView, name="pagos"),
 path('pendientes', views.alumnoConPagosPendientes, name="pendientes"),
-path('atraso', views.alumnoConPagosRetraso, name="atraso"),
+path('norealizo', views.alumnoConPagosnoRealizo, name="norealizo"),
 path('<int:pk>/registroPagos', views.registroPagos.as_view(), name="registroPagos"),
 path('<int:pk>/diferentepago',views.diferentepago.as_view(), name="diferentepagos"),
 path('<int:pk>/reincripcion',views.diferentepago1.as_view(), name="reincripcion"),
